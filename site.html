@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SL Waldren Prosthetic & Orthotic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Reset and Global Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ලිස්සා යන ආකාරයට සීරුවෙන් ස්ක්‍රෝල් වීමට (Smooth Scrolling) */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #2b2b2b;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #2e7d32; 
+            padding-bottom: 12px;
+            color: #2e7d32; 
+            scroll-margin-top: 130px; 
+        }
+
+        .sub-section-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #2e7d32;
+            padding-bottom: 5px;
+            position: relative;
+            display: block;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #424242;
+            font-weight: 400;
+        }
+
+        /* --- Header and Navigation --- */
+        header {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+        }
+
+        .logo-img {
+            height: 85px; 
+            width: auto;
+            object-fit: contain;
+            cursor: pointer;
+            display: block;
+            mix-blend-mode: multiply; 
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 6px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #2e7d32; 
+            transform-origin: bottom left;
+            transition: transform 0.3s ease-out; 
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1); 
+        }
+
+        nav a:hover {
+            color: #1b5e20;
+        }
+
+        /* --- Hero Carousel Slider --- */
+        .carousel-wrapper {
+            width: 100%;
+            height: 500px; 
+            overflow: hidden;
+            position: relative;
+            background: #f1f8e9;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 400%; 
+            height: 100%;
+            animation: slideLeftOnly 15s infinite cubic-bezier(0.645, 0.045, 0.355, 1); 
+        }
+
+        .slide {
+            width: 25%; 
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; 
+            padding-left: 140px; 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.75); 
+            z-index: 1;
+        }
+
+        .slide1, .slide1-dup {
+            background-color: #f1f8e9; 
+        }
+        .slide2 {
+            background-color: #e8f5e9; 
+        }
+        .slide3 {
+            background-color: #e8f8f5; 
+        }
+
+        .carousel-content {
+            position: relative;
+            z-index: 2;
+            max-width: 750px; 
+            text-align: left; 
+        }
+
+        .carousel-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1b5e20;
+            line-height: 1.3;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes slideLeftOnly {
+            0%, 25% { transform: translateX(0); }               
+            30%, 55% { transform: translateX(-25%); }           
+            60%, 85% { transform: translateX(-50%); }           
+            90%, 100% { transform: translateX(-75%); }          
+        }
+
+        /* --- Who We Are Section --- */
+        .leader-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .leader-img {
+            width: 250px;
+            height: 320px;
+            border: 2px solid #2e7d32;
+            background: #f1f8e9;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2e7d32;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .leader-info {
+            flex: 1;
+        }
+        
+        .leader-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2e7d32;
+            border-bottom: 1px solid #2e7d32;
+            padding-bottom: 5px;
+        }
+        
+        .prosthetic-list {
+            list-style: none;
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .prosthetic-list li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .prosthetic-list strong {
+            color: #1b5e20;
+            font-weight: 600;
+        }
+
+        .orthotic-info-box {
+            border-top: 2px dashed #2e7d32;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .orthotic-info-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        /* --- Philosophy, Vision, Mission --- */
+        .philosophy-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .phil-box {
+            border: 2px solid #2e7d32;
+            padding: 30px;
+            background: #f1f8e9;
+        }
+        .phil-box h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        .vision-mission-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .vm-card {
+            border: 2px solid #2e7d32;
+            padding: 25px;
+            flex: 1;
+            background: #f1f8e9;
+        }
+        .vm-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2e7d32;
+            padding-bottom: 5px;
+            color: #2e7d32;
+            text-transform: uppercase;
+        }
+
+        /* --- Certifications Grid --- */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 200px)); 
+            gap: 25px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .cert-card {
+            border: 2px solid #2e7d32;
+            height: 220px;
+            background: #fafdf6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .cert-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.2);
+        }
+
+        .cert-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.15; 
+        }
+
+        .cert-card span {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            color: #2e7d32;
+            font-weight: 700;
+            line-height: 1.3;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cert-card .cert-icon {
+            width: 45px;
+            height: 45px;
+            border: 1px solid #2e7d32;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f8e9;
+            color: #2e7d32;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- යාවත්කාලීන කරන ලදි: WHAT WE DO (තිරයෙන් ඇතුළට වන්නට සීමා කරන ලදී) --- */
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+            border: 2px solid #2e7d32; /* වටේටම බෝඩරය යෙදුවා */
+            background: #e8f5e9; 
+            padding: 25px 0;
+            display: flex;
+            position: relative;
+            cursor: grab;
+            user-select: none;
+            margin-bottom: 20px;
+        }
+
+        .marquee-container:active {
+            cursor: grabbing;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            will-change: transform;
+        }
+
+        .marquee-item {
+            width: 320px;
+            height: 240px; 
+            border: 2px solid #2e7d32; 
+            background: #ffffff; 
+            margin-right: 25px;
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .marquee-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .wwd-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .wwd-overlay {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85)); 
+            color: #ffffff;
+            text-align: left;
+            pointer-events: none; 
+        }
+
+        .wwd-overlay h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            margin: 0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Lightbox Modal --- */
+        .lightbox-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); 
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            max-width: 85%;
+            max-height: 80vh;
+            border: 3px solid #2e7d32;
+            background: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none;
+        }
+
+        .lightbox-content.show {
+            display: block;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: color 0.2s;
+            z-index: 10000;
+        }
+
+        .lightbox-close:hover {
+            color: #2e7d32;
+        }
+
+        /* --- Research & Projects Grid --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            border: 2px solid #2e7d32;
+            padding: 25px;
+            background: #f1f8e9;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .project-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 1.15rem;
+            color: #2e7d32;
+            font-weight: 700;
+        }
+        .project-card p {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #333333;
+        }
+        .project-card ul {
+            list-style: none;
+            margin-top: auto; 
+        }
+        .project-card ul li {
+            font-size: 0.88rem;
+            color: #424242;
+            margin-bottom: 6px;
+            font-weight: 500;
+            padding-left: 5px;
+        }
+
+        /* --- Our Objectives Grid --- */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .objective-item {
+            border-left: 4px solid #2e7d32;
+            padding: 15px 20px;
+            background: #fafdf6;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: left;
+        }
+        .objective-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2e7d32;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .objective-item p {
+            font-size: 0.9rem;
+            color: #424242;
+            line-height: 1.6;
+        }
+
+        /* --- Services Grid --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            border: 2px solid #2e7d32;
+            padding: 30px;
+            background: #f1f8e9;
+        }
+        .service-column h3 {
+            font-family: 'Montserrat', sans-serif;
+            border-bottom: 2px solid #2e7d32;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #2e7d32;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .service-column ul {
+            list-style: none;
+        }
+        .service-column ul li {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #424242;
+            font-weight: 500;
+            padding-left: 5px;
+        }
+
+        /* --- Donation Box --- */
+        .donation-box {
+            border: 2px solid #2e7d32;
+            padding: 45px 30px;
+            text-align: center;
+            background: #f1f8e9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .donation-box h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #2e7d32;
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .donation-box .donation-desc {
+            margin-bottom: 30px;
+            font-size: 1rem;
+            color: #333333;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        .donation-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            color: #1b5e20;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed #2e7d32;
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+        .account-details-list {
+            list-style: none;
+            max-width: 450px;
+            margin: 0 auto;
+            text-align: left;
+            background: #ffffff;
+            padding: 25px;
+            border: 1px solid #2e7d32;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .account-details-list li {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            color: #2b2b2b;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 6px;
+        }
+        .account-details-list li:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .account-details-list strong {
+            color: #1b5e20;
+            font-weight: 600;
+        }
+
+        /* --- Compact Footer --- */
+        footer {
+            border-top: 1px solid #e0e0e0;
+            padding: 15px 20px; 
+            background-color: #ffffff; 
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-copyright {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #666666;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .footer-logo-img {
+            height: 50px; 
+            width: auto;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+        }
+
+        /* --- Mobile Responsive Rules --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            .carousel-wrapper {
+                height: 350px;
+            }
+            .slide {
+                padding-left: 30px; 
+            }
+            .carousel-content h1 {
+                font-size: 1.4rem; 
+                line-height: 1.3;
+            }
+            .leader-row {
+                flex-direction: column;
+                text-align: left;
+            }
+            .leader-img {
+                width: 100%;
+                max-width: 250px;
+                margin: 0 auto;
+            }
+            .philosophy-container, 
+            .objectives-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .lightbox-content {
+                max-width: 95%;
+            }
+            .certifications-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .account-details-list {
+                padding: 15px;
+            }
+            .account-details-list li {
+                flex-direction: column;
+                gap: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-container">
+                <img src="Capturvgfte.PNG" alt="SL Waldren Logo" class="logo-img">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#who-we-are">Who We Are</a></li>
+                    <li><a href="#what-we-do">What We Do</a></li>
+                    <li><a href="#services">Services</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="carousel-wrapper">
+        <div class="carousel-track">
+            <div class="slide slide1">
+                <div class="carousel-content">
+                    <h1>Prosthetic & Orthotic Care Showcase</h1>
+                </div>
+            </div>
+            <div class="slide slide2">
+                <div class="carousel-content">
+                    <h1>Advanced Biomechanical Solutions</h1>
+                </div>
+            </div>
+            <div class="slide slide3">
+                <div class="carousel-content">
+                    <h1>Empowering Mobility, Restoring Life</h1>
+                </div>
+            </div>
+            <div class="slide slide1-dup">
+                <div class="carousel-content">
+                    <h1>Prosthetic & Orthotic Care Showcase</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="who-we-are">
+        <h2 class="section-title">Who We Are</h2>
+        <div class="leader-row">
+            <div class="leader-img">
+                <span>[ Mr. Sugath's Photo ]</span>
+            </div>
+            <div class="leader-info">
+                <h3>Mr. Sugath Laggoda</h3>
+                <p>Specialized and highly experienced in advanced prosthetic solutions, limb restorations, and custom orthotic alignments. Offering world-class prosthetic care in the following categories:</p>
+                <ul class="prosthetic-list">
+                    <li>• <strong>Hip disarticulation:</strong> Amputation of the entire lower limb at the hip joint.</li>
+                    <li>• <strong>Transfemoral:</strong> Amputation across the thigh bone (above knee level).</li>
+                    <li>• <strong>Knee disarticulation:</strong> Amputation through the knee joint.</li>
+                    <li>• <strong>Below knee:</strong> Amputation below the knee joint.</li>
+                    <li>• <strong>Ankle disarticulation:</strong> Amputation through the ankle joint.</li>
+                    <li>• <strong>Partial foot:</strong> Amputation of a portion of the foot structure.</li>
+                </ul>
+                <div class="orthotic-info-box">
+                    <h4>Orthotic Services</h4>
+                    <p>Providing advanced therapeutic orthotic systems, skeletal correction devices, and custom spinal bracing frameworks engineered for complete structural alignment and full physical rehabilitation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding-top: 10px;">
+        <div class="philosophy-container">
+            <div class="phil-box">
+                <h2>Our Philosophical Foundation</h2>
+                <p style="margin-top:20px;">We believe mobility is a fundamental human right. By merging engineering precision with patient-centered compassionate care, our mission builds bridges toward a completely seamless, empowered, and self-reliant Tomorrow.</p>
+            </div>
+            <div class="vision-mission-box">
+                <div class="vm-card">
+                    <h3>Vision</h3>
+                    <p>To lead global standards in structural biological alignment, establishing unmatched restorative equity worldwide.</p>
+                </div>
+                <div class="vm-card">
+                    <h3>Mission</h3>
+                    <p>Providing custom-engineered orthotic and prosthetic answers engineered precisely around unique human needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding-top: 10px;">
+        <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 25px; border-bottom: none;">Approvals & Certifications</h2>
+        <div class="certifications-grid">
+            <div class="cert-card" data-cert="health_approval.jpg">
+                <img src="health_approval.jpg" alt="MOH Approval" class="cert-img">
+                <div class="cert-icon">✓</div>
+                <span>Ministry of Health Approval</span>
+            </div>
+            <div class="cert-card" data-cert="registry_cert.jpg">
+                <img src="registry_cert.jpg" alt="Registry Certificate" class="cert-img">
+                <div class="cert-icon">✓</div>
+                <span>Clinical Registry Certificate</span>
+            </div>
+            <div class="cert-card" data-cert="quality_standard.jpg">
+                <img src="quality_standard.jpg" alt="Quality Standard" class="cert-img">
+                <div class="cert-icon">✓</div>
+                <span>Quality Assurance Standard</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="what-we-do" style="text-align: center;">
+        <h2 class="section-title">What We Do</h2>
+        
+        <div class="marquee-container" id="marqueeContainer">
+            <div class="marquee-track" id="marqueeTrack">
+                <div class="marquee-item">
+                    <video class="wwd-media" autoplay muted loop playsinline><source src="prosthetic_video.mp4" type="video/mp4"></video>
+                    <div class="wwd-overlay"><h4>Prosthetic Fitting</h4></div>
+                </div>
+                <div class="marquee-item">
+                    <img src="orthotic_image.jpg" alt="Orthotic" class="wwd-media">
+                    <div class="wwd-overlay"><h4>Orthotic Correction</h4></div>
+                </div>
+                <div class="marquee-item">
+                    <video class="wwd-media" autoplay muted loop playsinline><source src="pediatric_video.mp4" type="video/mp4"></video>
+                    <div class="wwd-overlay"><h4>Pediatric Mobility</h4></div>
+                </div>
+                <div class="marquee-item">
+                    <img src="gait_image.jpg" alt="Gait" class="wwd-media">
+                    <div class="wwd-overlay"><h4>Gait Evaluation</h4></div>
+                </div>
+                <div class="marquee-item">
+                    <img src="rehab_image.jpg" alt="Rehab" class="wwd-media">
+                    <div class="wwd-overlay"><h4>Holistic Rehab</h4></div>
+                </div>
+                <div class="marquee-item">
+                    <video class="wwd-media" autoplay muted loop playsinline><source src="prosthetic_video.mp4" type="video/mp4"></video>
+                    <div class="wwd-overlay"><h4>Prosthetic Fitting</h4></div>
+                </div>
+                <div class="marquee-item">
+                    <img src="orthotic_image.jpg" alt="Orthotic" class="wwd-media">
+                    <div class="wwd-overlay"><h4>Orthotic Correction</h4></div>
+                </div>
+                <div class="marquee-item">
+                    <video class="wwd-media" autoplay muted loop playsinline><source src="pediatric_video.mp4" type="video/mp4"></video>
+                    <div class="wwd-overlay"><h4>Pediatric Mobility</h4></div>
+                </div>
+                <div class="marquee-item">
+                    <img src="gait_image.jpg" alt="Gait" class="wwd-media">
+                    <div class="wwd-overlay"><h4>Gait Evaluation</h4></div>
+                </div>
+                <div class="marquee-item">
+                    <img src="rehab_image.jpg" alt="Rehab" class="wwd-media">
+                    <div class="wwd-overlay"><h4>Holistic Rehab</h4></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="sub-section-title">Research & Recent Projects</h3>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Mobility & Prosthetics</h3>
+                <p>Providing artificial limbs, walking apparatus, wheelchairs, and other assistive devices to restore mobility and independence.</p>
+                <ul>
+                    <li>• Artificial Limbs (Upper & Lower)</li>
+                    <li>• Wheelchairs & Walkers</li>
+                    <li>• Walking Sticks & Crutches</li>
+                    <li>• Orthopedic Appliances</li>
+                </ul>
+            </div>
+            <div class="project-card">
+                <h3>Education & Training</h3>
+                <p>Educational support, awareness programs, and skills training to empower persons with disabilities for a brighter future.</p>
+                <ul>
+                    <li>• Educational Scholarships</li>
+                    <li>• Vocational Training</li>
+                    <li>• Awareness Campaigns</li>
+                    <li>• Rights Education</li>
+                </ul>
+            </div>
+            <div class="project-card">
+                <h3>Self-Employment Aid</h3>
+                <p>Supporting economic independence through self-employment aids, tools, and resources to help individuals build livelihoods.</p>
+                <ul>
+                    <li>• Startup Assistance</li>
+                    <li>• Economic Empowerment</li>
+                    <li>• Resource Provision</li>
+                    <li>• Mentorship Programs</li>
+                </ul>
+            </div>
+            <div class="project-card">
+                <h3>Rehabilitation Support</h3>
+                <p>Comprehensive rehabilitation programs to help persons with disabilities regain function and live independently.</p>
+                <ul>
+                    <li>• Physical Rehabilitation</li>
+                    <li>• Post-Surgery Care</li>
+                    <li>• Prosthetic Fitting</li>
+                    <li>• Recovery Programs</li>
+                </ul>
+            </div>
+            <div class="project-card">
+                <h3>Social Integration</h3>
+                <p>Programs that promote social inclusion, cultural participation, and equal opportunities across all spheres of life.</p>
+                <ul>
+                    <li>• Community Integration</li>
+                    <li>• Cultural Programs</li>
+                    <li>• Recreational Activities</li>
+                    <li>• Equal Opportunity Advocacy</li>
+                </ul>
+            </div>
+            <div class="project-card">
+                <h3>Rights & Advocacy</h3>
+                <p>Promoting awareness and protecting the fundamental rights of persons with disabilities within Sri Lankan society.</p>
+                <ul>
+                    <li>• Rights Protection</li>
+                    <li>• Policy Advocacy</li>
+                    <li>• Legal Awareness</li>
+                    <li>• Community Outreach</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 class="sub-section-title">Our Objectives</h3>
+        <div class="objectives-grid">
+            <div class="objective-item">
+                <h3>Improve Quality of Life</h3>
+                <p>To provide necessary facilities and support to persons with disabilities in order to improve their quality of life through access to essential devices and resources.</p>
+            </div>
+            <div class="objective-item">
+                <h3>Education, Training & Rehabilitation</h3>
+                <p>To implement programs related to education, training, rehabilitation, self-employment, and social empowerment of persons with disabilities.</p>
+            </div>
+            <div class="objective-item">
+                <h3>Promote Awareness & Rights</h3>
+                <p>To promote awareness and protect the rights of persons with disabilities within society, ensuring they are heard, valued, and respected.</p>
+            </div>
+            <div class="objective-item">
+                <h3>Social Integration & Equal Opportunity</h3>
+                <p>To encourage social integration and ensure equal opportunities for persons with disabilities in every sector of society.</p>
+            </div>
+            <div class="objective-item">
+                <h3>Independent Living</h3>
+                <p>To lead an independent life for persons with disabilities in the fields of culture, education, economics, recreation, and entertainment.</p>
+            </div>
+            <div class="objective-item">
+                <h3>Government Policy Alignment</h3>
+                <p>Everything we do aligns with the National Human Policy of Sri Lanka for persons with disabilities, ensuring our work is lawful, ethical, and impactful.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox-modal" id="lightboxModal">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <video id="lightboxVideo" class="lightbox-content" controls autoplay></video>
+        <img id="lightboxImg" class="lightbox-content" alt="Enlarged view">
+    </div>
+
+    <section id="services">
+        <h2 class="section-title">Services</h2>
+        <div class="services-grid">
+            <div class="service-column">
+                <h3>Orthopaedic Appliances</h3>
+                <ul>
+                    <li>• Ankle Support & Knee Guard</li>
+                    <li>• Arm Sling</li>
+                    <li>• Hyperextension Brace</li>
+                    <li>• Lumber & Thoraco Lumbar Corset</li>
+                    <li>• Surgical Boots, Pelvic Band</li>
+                    <li>• Abduction & Fracture Braces</li>
+                </ul>
+            </div>
+            <div class="service-column">
+                <h3>Limb Prostheses</h3>
+                <ul>
+                    <li>• Above & Below Knee Prosthesis</li>
+                    <li>• Disarticulation Prosthesis</li>
+                    <li>• Partial Foot Prosthesis</li>
+                    <li>• Cosmetic & Functional Hands</li>
+                    <li>• Myoelectric / Functional Hand</li>
+                </ul>
+            </div>
+            <div class="service-column">
+                <h3>Speciality Care</h3>
+                <ul>
+                    <li>• Diabetic Foot Care</li>
+                    <li>• Custom Made Insoles</li>
+                    <li>• Scoliosis Braces (Boston/TLSO)</li>
+                    <li>• Spinal & Post-Op Braces</li>
+                    <li>• Cervical Braces</li>
+                    <li>• Paediatric Lower Limb Orthoses</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="donation-box">
+            <h2>SUPPORT OUR WORK</h2>
+            <p class="donation-desc">Your generous contributions directly fund essential mobility frameworks, advanced artificial limb systems, and comprehensive rehabilitation programs for individuals in urgent economic need. Help us build a barrier-free tomorrow by making a donation today.</p>
+            
+            <h3>BANK ACCOUNT DETAILS</h3>
+            <ul class="account-details-list">
+                <li><span>Account Name:</span> <strong>SAFE FUTURE FOUNDATION</strong></li>
+                <li><span>Account Number:</span> <strong>241-2-001-3-0077957</strong></li>
+                <li><span>Branch:</span> <strong>Pallepola (00241)</strong></li>
+                <li><span>Address:</span> <strong>No 175/G, Galahitiyagama, Pallepola 21152</strong></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-copyright">
+                &copy; 2026 SL Waldren. All Rights Reserved.
+            </div>
+            <img src="Capturvgfte.PNG" alt="SL Waldren Logo" class="footer-logo-img">
+        </div>
+    </footer>
+
+    <script>
+        const container = document.getElementById('marqueeContainer');
+        const track = document.getElementById('marqueeTrack');
+        const modal = document.getElementById('lightboxModal');
+        const modalVid = document.getElementById('lightboxVideo');
+        const modalImg = document.getElementById('lightboxImg');
+        const modalClose = document.getElementById('lightboxClose');
+
+        let currentX = 0; let isDragging = false; let startX = 0; let dragMoved = false; 
+        let autoplaySpeed = 1; let isHovered = false;
+
+        function getHalfWidth() { return track.scrollWidth / 2; }
+
+        function animate() {
+            if (!isDragging && !modal.classList.contains('active')) {
+                if (!isHovered) { currentX -= autoplaySpeed; }
+                const halfWidth = getHalfWidth();
+                if (Math.abs(currentX) >= halfWidth) { currentX = 0; }
+                track.style.transform = `translateX(${currentX}px)`;
+            }
+            requestAnimationFrame(animate);
+        }
+
+        container.addEventListener('mouseenter', () => isHovered = true);
+        container.addEventListener('mouseleave', () => { isHovered = false; isDragging = false; });
+
+        container.addEventListener('mousedown', (e) => { isDragging = true; dragMoved = false; startX = e.pageX - currentX; });
+        container.addEventListener('mousemove', (e) => {
+            if (!isDragging) return; e.preventDefault(); dragMoved = true; 
+            currentX = e.pageX - startX; const halfWidth = getHalfWidth();
+            if (currentX > 0) { currentX = -halfWidth; startX = e.pageX - currentX; }
+            else if (Math.abs(currentX) >= halfWidth) { currentX = 0; startX = e.pageX - currentX; }
+            track.style.transform = `translateX(${currentX}px)`;
+        });
+        window.addEventListener('mouseup', () => isDragging = false);
+
+        // Touch support
+        container.addEventListener('touchstart', (e) => { isDragging = true; dragMoved = false; startX = e.touches[0].pageX - currentX; });
+        container.addEventListener('touchmove', (e) => {
+            if (!isDragging) return; dragMoved = true;
+            currentX = e.touches[0].pageX - startX; const halfWidth = getHalfWidth();
+            if (currentX > 0) { currentX = -halfWidth; startX = e.touches[0].pageX - currentX; }
+            else if (Math.abs(currentX) >= halfWidth) { currentX = 0; startX = e.touches[0].pageX - currentX; }
+            track.style.transform = `translateX(${currentX}px)`;
+        });
+        container.addEventListener('touchend', () => isDragging = false);
+
+        // Interactive lightboxes
+        document.querySelectorAll('.marquee-item, .cert-card').forEach(item => {
+            item.addEventListener('click', () => {
+                if (dragMoved) return;
+                modalVid.classList.remove('show'); modalImg.classList.remove('show');
+                modalVid.src = ""; modalImg.src = "";
+                
+                const media = item.querySelector('.wwd-media, .cert-img');
+                if (media) {
+                    if (media.tagName === 'VIDEO') {
+                        modalVid.src = media.querySelector('source').src;
+                        modalVid.muted = false; modalVid.classList.add('show');
+                    } else {
+                        modalImg.src = media.src; modalImg.classList.add('show');
+                    }
+                    modal.classList.add('active');
+                } else if (item.hasAttribute('data-cert')) {
+                    modalImg.src = item.getAttribute('data-cert');
+                    modalImg.classList.add('show'); modal.classList.add('active');
+                }
+            });
+        });
+
+        function closeModal() { modal.classList.remove('active'); modalVid.pause(); }
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+        window.addEventListener('load', () => {
+            document.querySelectorAll('video.wwd-media').forEach(v => { v.muted = true; v.play().catch(e => {}); });
+            animate();
+        });
+    </script>
+</body>
+</html>
