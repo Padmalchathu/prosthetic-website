@@ -413,6 +413,226 @@
             letter-spacing: 2px;
         }
 
+        /* === TEAM MEMBERS === */
+        .team-members-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Primary member — bold highlighted card with photo */
+        .team-member-primary {
+            display: flex;
+            align-items: flex-start;
+            gap: 45px;
+            background: var(--white);
+            border: 1px solid var(--border-mid);
+            border-left: 5px solid var(--green-main);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+        .team-member-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green-deep), var(--green-light), var(--green-deep));
+        }
+
+        .team-photo-frame {
+            width: 230px;
+            min-height: 290px;
+            border: 1px solid var(--border-mid);
+            background: var(--green-faint);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        .team-photo-frame img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            position: absolute; top: 0; left: 0;
+        }
+        .team-photo-frame::before,
+        .team-photo-frame::after {
+            content: '';
+            position: absolute;
+            width: 22px; height: 22px;
+            border-color: var(--green-main);
+            border-style: solid;
+            z-index: 2;
+        }
+        .team-photo-frame::before { top: -1px; left: -1px; border-width: 3px 0 0 3px; }
+        .team-photo-frame::after  { bottom: -1px; right: -1px; border-width: 0 3px 3px 0; }
+
+        .team-badge {
+            position: absolute;
+            top: 12px; right: 0;
+            background: var(--green-deep);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            z-index: 3;
+        }
+
+        .team-info { flex: 1; }
+
+        .team-name-primary {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: var(--green-deep);
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-bottom: 14px;
+            margin-bottom: 10px;
+        }
+        .team-name-primary::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, var(--green-main), transparent);
+        }
+
+        .team-name-secondary {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--green-deep);
+            letter-spacing: 0.3px;
+            position: relative;
+            padding-bottom: 12px;
+            margin-bottom: 10px;
+        }
+        .team-name-secondary::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 55%; height: 1px;
+            background: linear-gradient(90deg, var(--green-mid), transparent);
+        }
+
+        .team-title-tag {
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--green-main);
+            background: var(--green-pale);
+            border: 1px solid var(--border-mid);
+            padding: 4px 12px;
+            margin-bottom: 14px;
+        }
+
+        .team-description {
+            font-size: 0.93rem;
+            color: var(--text-body);
+            margin-bottom: 6px;
+            line-height: 1.8;
+        }
+
+        .specialty-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.66rem;
+            font-weight: 700;
+            color: var(--green-deep);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .specialty-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Secondary member — no photo, slightly quieter */
+        .team-member-secondary {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--green-mid);
+            padding: 35px 40px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        /* Physiotherapist member */
+        .team-member-physio {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            background: var(--green-faint);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--green-light);
+            padding: 35px 40px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .physio-reg-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            background: var(--white);
+            border: 1px solid var(--border-mid);
+            padding: 5px 14px;
+            margin-bottom: 14px;
+            margin-top: 4px;
+        }
+
+        /* Shared service list for orthotic / physio items */
+        .services-detail-list {
+            list-style: none;
+            margin-bottom: 6px;
+        }
+        .services-detail-list li {
+            margin-bottom: 7px;
+            font-size: 0.89rem;
+            padding: 7px 12px;
+            border-left: 2px solid var(--green-light);
+            background: var(--green-mist);
+            transition: var(--transition);
+            color: var(--text-body);
+        }
+        .services-detail-list li:hover {
+            background: var(--green-pale);
+            border-left-color: var(--green-deep);
+            padding-left: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .team-member-primary,
+            .team-member-secondary,
+            .team-member-physio { flex-direction: column; padding: 22px; }
+            .team-photo-frame { width: 100%; max-width: 200px; min-height: 240px; }
+        }
+
         /* === PHILOSOPHY / VISION / MISSION === */
         .philosophy-container {
             display: grid;
@@ -1033,7 +1253,7 @@
     <header>
         <div class="nav-container">
             <a href="#" class="logo-container">
-                <img src="Capturvgfte.PNG" alt="SL Waldren Logo" class="logo-img">
+                <img src="Gemini_Generated_Image_1xvmzk1xvmzk1xvm.png" alt="SL Waldren Logo" class="logo-img">
             </a>
             <nav>
                 <ul>
@@ -1072,26 +1292,80 @@
 
     <section id="who-we-are">
         <h2 class="section-title">Who We Are</h2>
-        <div class="leader-row">
-            <div class="leader-img">
-                <span>[ Mr. Sugath's Photo ]</span>
-            </div>
-            <div class="leader-info">
-                <h3>Mr. Sugath Laggoda</h3>
-                <p>Specialized and highly experienced in advanced prosthetic solutions, limb restorations, and custom orthotic alignments. Offering world-class prosthetic care in the following categories:</p>
-                <ul class="prosthetic-list">
-                    <li>• <strong>Hip disarticulation:</strong> Amputation of the entire lower limb at the hip joint.</li>
-                    <li>• <strong>Transfemoral:</strong> Amputation across the thigh bone (above knee level).</li>
-                    <li>• <strong>Knee disarticulation:</strong> Amputation through the knee joint.</li>
-                    <li>• <strong>Below knee:</strong> Amputation below the knee joint.</li>
-                    <li>• <strong>Ankle disarticulation:</strong> Amputation through the ankle joint.</li>
-                    <li>• <strong>Partial foot:</strong> Amputation of a portion of the foot structure.</li>
-                </ul>
-                <div class="orthotic-info-box">
-                    <h4>Orthotic Services</h4>
-                    <p>Providing advanced therapeutic orthotic systems, skeletal correction devices, and custom spinal bracing frameworks engineered for complete structural alignment and full physical rehabilitation.</p>
+        <div class="team-members-wrapper">
+
+            <!-- ===== PRIMARY: Mr. Sugath Laggoda ===== -->
+            <div class="team-member-primary">
+                <div class="team-photo-frame">
+                    <img src="Sugath_photo.jpg" alt="Mr. Sugath Laggoda"
+                         onerror="this.style.display='none'; this.parentElement.querySelector('.photo-placeholder').style.display='flex';">
+                    <div class="photo-placeholder" style="display:flex; width:100%; height:100%; min-height:300px; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:0.75rem; color:var(--green-main); font-weight:700; text-align:center; padding:20px;">[ Mr. Sugath's Photo ]</div>
+                    <div class="team-badge">Prosthetic Specialist</div>
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name-primary">Mr. Sugath Laggoda</h3>
+                    <div class="team-title-tag">Prosthesist &amp; Orthotist</div>
+                    <p class="team-description">Specialized and highly experienced in advanced prosthetic solutions, limb restorations, and custom orthotic alignments. Offering world-class prosthetic care across a comprehensive range of amputation levels.</p>
+
+                    <div class="specialty-label">Prosthetic Specializations</div>
+                    <ul class="prosthetic-list">
+                        <li>• <strong>Hip disarticulation:</strong> Amputation of the entire lower limb at the hip joint.</li>
+                        <li>• <strong>Transfemoral:</strong> Amputation across the thigh bone (above knee level).</li>
+                        <li>• <strong>Knee disarticulation:</strong> Amputation through the knee joint.</li>
+                        <li>• <strong>Below knee:</strong> Amputation below the knee joint.</li>
+                        <li>• <strong>Ankle disarticulation:</strong> Amputation through the ankle joint.</li>
+                        <li>• <strong>Partial foot:</strong> Amputation of a portion of the foot structure.</li>
+                    </ul>
                 </div>
             </div>
+
+            <!-- ===== SECONDARY: Ms. Sandareka Perera ===== -->
+            <div class="team-member-secondary">
+                <div class="team-info">
+                    <h3 class="team-name-secondary">Ms. Sandareka Perera</h3>
+                    <div class="team-title-tag" style="border-color: var(--border); color: var(--green-mid); background: var(--green-mist);">Orthotist</div>
+                    <p class="team-description" style="margin-top:14px;">Providing dedicated orthotic care with expertise in lower limb orthoses, corrective bracing, and a full range of orthopaedic appliances — helping patients achieve better mobility, alignment, and quality of life.</p>
+
+                    <div class="specialty-label" style="margin-top: 22px;">Lower Limb Orthoses</div>
+                    <ul class="services-detail-list">
+                        <li>Pediatric / Adult Lower Limb Orthoses</li>
+                        <li>Mobility Supportive Orthosis — AFOs / KAFOs</li>
+                        <li>Foot deformity corrective and accommodative orthosis (FOS, SMOS)</li>
+                        <li>Night Splints</li>
+                        <li>Preventive and Accommodative Braces</li>
+                    </ul>
+
+                    <div class="specialty-label" style="margin-top: 22px;">Orthopaedic Appliances</div>
+                    <ul class="services-detail-list">
+                        <li>Humeral Fracture Brace &amp; Other Fracture Braces</li>
+                        <li>Thoraco Lumbar Corset / Lumbar Corset</li>
+                        <li>Hyperextension Brace</li>
+                        <li>Abduction Brace, Chest Guard, Pelvic Band</li>
+                        <li>Boot &amp; Bar Splint / Surgical Boots</li>
+                        <li>Arm Sling</li>
+                        <li>Knee Guard &amp; Ankle Support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ===== THIRD: M. P. M. Nusky — Physiotherapist ===== -->
+            <div class="team-member-physio">
+                <div class="team-info">
+                    <h3 class="team-name-secondary" style="color: var(--green-mid);">M. P. M. Nusky</h3>
+                    <div class="team-title-tag" style="border-color: var(--border); color: var(--text-muted); background: var(--white);">Physiotherapist</div>
+                    <div class="physio-reg-tag">SLMC Reg No – 1371 &nbsp;|&nbsp; ශ්‍රී ලංකා වෛද්‍ය සභාවේ ලියාපදිංචි අංකය</div>
+                    <p class="team-description">Providing comprehensive physiotherapy and rehabilitation services to support patient recovery, restore function, and improve overall physical wellbeing.</p>
+
+                    <div class="specialty-label" style="margin-top: 10px;">Physiotherapy &amp; Rehabilitation Services</div>
+                    <ul class="services-detail-list">
+                        <li>Manual Therapy</li>
+                        <li>Electrotherapy</li>
+                        <li>Dry Needling</li>
+                        <li>Cupping Therapy</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -1340,7 +1614,7 @@
             <div class="footer-copyright">
                 &copy; 2026 Safe Future Foundation. All Rights Reserved.
             </div>
-            <img src="Capturvgfte.PNG" alt="SL Waldren Logo" class="footer-logo-img">
+            <img src="5024742b-976b-4c4e-b248-4d6ab9c0c022.png" alt="SL Waldren Logo" class="footer-logo-img">
         </div>
     </footer>
 
