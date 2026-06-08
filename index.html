@@ -257,17 +257,26 @@
             position: relative;
         }
 
+        /* පින්තූරවලට උඩින් ඇති ලියවිලි හොඳින් පෙනීම සඳහා සියුම් Overlay එකක් එක් කරන ලදී */
         .slide::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(255,255,255,0.0);
+            background: rgba(255,255,255,0.65);
             z-index: 1;
         }
 
-        .slide1, .slide1-dup { background-color: transparent; }
-        .slide2               { background-color: transparent; }
-        .slide3               { background-color: transparent; }
+        /* යාවත්කාලීන කරන ලදි: slides 3 සඳහා පින්තූර එකතු කිරීමට background-image එක් කරන ලදී. 
+           මෙහි ඇති image1.jpg වැනි නම් වෙනුවට ඔබේ පින්තූරවල නම් ආදේශ කරන්න. */
+        .slide1, .slide1-dup { 
+            background-image: url('yry-kirillov-pbUWW-CBoqY-unsplash.jpg'); 
+        }
+        .slide2 { 
+            background-image: url('image2.jpg'); 
+        }
+        .slide3 { 
+            background-image: url('image3.jpg'); 
+        }
 
         .carousel-content {
             position: relative;
@@ -1297,7 +1306,7 @@
             <!-- ===== PRIMARY: Mr. Sugath Laggoda ===== -->
             <div class="team-member-primary">
                 <div class="team-photo-frame">
-                    <img src="Sugath_photo.jpg" alt="Mr. Sugath Laggoda"
+                    <img src="C.PNG" alt="Mr. Sugath Laggoda"
                          onerror="this.style.display='none'; this.parentElement.querySelector('.photo-placeholder').style.display='flex';">
                     <div class="photo-placeholder" style="display:flex; width:100%; height:100%; min-height:300px; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:0.75rem; color:var(--green-main); font-weight:700; text-align:center; padding:20px;">[ Mr. Sugath's Photo ]</div>
                     <div class="team-badge">Prosthetic Specialist</div>
