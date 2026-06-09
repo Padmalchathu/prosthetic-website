@@ -58,12 +58,48 @@
             z-index: 0;
         }
 
+        /* ප්‍රධාන සෙක්ෂන් ස්ක්‍රෝල් රිවීල් එක */
         section {
             padding: 70px 30px;
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+
+        section.reveal-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Grid Items වෙන වෙනම ස්ක්‍රෝල් වෙද්දී ඇනිමේට් වීමට අවශ්‍ය මුල් ස්ටයිල්ස් */
+        .brand-affiliation-showcase,
+        .team-member-primary, 
+        .team-member-secondary, 
+        .team-member-physio,
+        .project-card, 
+        .objective-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+
+        .brand-affiliation-showcase.item-reveal-active,
+        .team-member-primary.item-reveal-active, 
+        .team-member-secondary.item-reveal-active, 
+        .team-member-physio.item-reveal-active,
+        .project-card.item-reveal-active, 
+        .objective-item.item-reveal-active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* === TYPOGRAPHY === */
@@ -137,7 +173,6 @@
             box-shadow: 0 1px 20px rgba(26,77,30,0.07);
         }
 
-        /* Thin green accent line at top of header */
         header::before {
             content: '';
             position: absolute;
@@ -203,128 +238,257 @@
             box-shadow: var(--shadow-sm);
         }
 
-        /* === HERO CAROUSEL === */
-        .carousel-wrapper {
+        /* === HERO SECTION === */
+        .hero-section {
             width: 100%;
-            height: 520px;
-            overflow: hidden;
+            min-height: 100vh;
             position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f2 45%, #dcedc8 100%);
         }
 
-        /* Layered background for hero */
-        .carousel-wrapper::before {
+        .hero-section .hero-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+            opacity: 0.18;
+        }
+
+        .hero-section::before {
             content: '';
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse 80% 60% at 15% 50%, rgba(232,245,233,0.95) 0%, transparent 70%),
-                radial-gradient(ellipse 50% 80% at 85% 50%, rgba(241,248,242,0.7) 0%, transparent 60%),
-                linear-gradient(135deg, #e8f5e9 0%, #f1f8f2 50%, #e0f2e1 100%);
+                radial-gradient(ellipse 70% 80% at 5% 50%, rgba(46,125,50,0.09) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 60% at 95% 20%, rgba(76,175,80,0.06) 0%, transparent 60%);
             z-index: 0;
         }
 
-        /* Decorative anatomical cross-lines */
-        .carousel-wrapper::after {
+        .hero-section::after {
             content: '';
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(46,125,50,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(46,125,50,0.04) 1px, transparent 1px);
-            background-size: 60px 60px;
+                linear-gradient(rgba(46,125,50,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46,125,50,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
             z-index: 0;
         }
 
-        .carousel-track {
-            display: flex;
-            width: 400%;
-            height: 100%;
-            animation: slideLeftOnly 15s infinite cubic-bezier(0.645, 0.045, 0.355, 1);
-            position: relative;
-            z-index: 1;
-        }
-
-        .slide {
-            width: 25%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding-left: 120px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-        }
-
-        /* පින්තූරවලට උඩින් ඇති ලියවිලි හොඳින් පෙනීම සඳහා සියුම් Overlay එකක් එක් කරන ලදී */
-        .slide::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(255,255,255,0.65);
-            z-index: 1;
-        }
-
-        /* යාවත්කාලීන කරන ලදි: slides 3 සඳහා පින්තූර එකතු කිරීමට background-image එක් කරන ලදී. 
-           මෙහි ඇති image1.jpg වැනි නම් වෙනුවට ඔබේ පින්තූරවල නම් ආදේශ කරන්න. */
-        .slide1, .slide1-dup { 
-            background-image: url('yry-kirillov-pbUWW-CBoqY-unsplash.jpg'); 
-        }
-        .slide2 { 
-            background-image: url('image2.jpg'); 
-        }
-        .slide3 { 
-            background-image: url('image3.jpg'); 
-        }
-
-        .carousel-content {
+        .hero-inner {
             position: relative;
             z-index: 2;
-            max-width: 680px;
-            text-align: left;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
+            padding-top: 0;
+            padding-bottom: 20vh;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            gap: 60px;
         }
 
-        /* Decorative tag above heading */
-        .carousel-content::before {
-            content: '— PROSTHETIC & ORTHOTIC SPECIALISTS —';
-            display: block;
+        .hero-text { flex: 1; }
+
+        /* යාවත්කාලීන කරන ලදි: මුලින් නොපෙනී තිබී ලෝඩ් වෙද්දී පහළ සිට ඉහළට ඒමට අවශ්‍ය හීරෝ ඇනිමේෂන් සැකසුම */
+        .hero-label, .hero-heading, .hero-subheading, .hero-desc, .hero-tag {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroElementFadeUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            will-change: opacity, transform;
+        }
+
+        /* එක් එක් අංග වෙන වෙනම (Staggered) මතු වීමට කාල පමාවන් (Animation Delays) එකතු කිරීම */
+        .hero-anim-1 { animation-delay: 0.15s; } /* Label */
+        .hero-anim-2 { animation-delay: 0.35s; } /* Heading */
+        .hero-anim-3 { animation-delay: 0.5s; }  /* Subheading */
+        .hero-anim-4 { animation-delay: 0.65s; } /* Description */
+        
+        /* Tags ටික එකින් එක පෝලිමට මතු වීමට */
+        .hero-tag:nth-child(1) { animation-delay: 0.8s; }
+        .hero-tag:nth-child(2) { animation-delay: 0.9s; }
+        .hero-tag:nth-child(3) { animation-delay: 1.0s; }
+        .hero-tag:nth-child(4) { animation-delay: 1.1s; }
+        .hero-tag:nth-child(5) { animation-delay: 1.2s; }
+
+        /* හීරෝ ඇනිමේෂන් කීෆ්‍රේම් */
+        @keyframes heroElementFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-label {
+            display: inline-block;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.68rem;
+            font-size: 0.63rem;
             font-weight: 700;
-            letter-spacing: 3px;
-            color: var(--green-mid);
-            margin-bottom: 18px;
-            opacity: 0.85;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--green-main);
+            background: rgba(46,125,50,0.07);
+            border: 1px solid var(--border-mid);
+            padding: 5px 14px;
+            margin-bottom: 26px;
         }
 
-        .carousel-content h1 {
+        .hero-heading {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.6rem;
+            font-size: 5.5rem;
             font-weight: 700;
             color: var(--green-deep);
-            line-height: 1.15;
-            letter-spacing: 1px;
+            line-height: 1.05;
+            letter-spacing: 0.5px;
+            position: relative;
         }
 
-        /* Decorative line below heading */
-        .carousel-content h1::after {
+        .hero-heading::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--green-main), transparent);
-            margin-top: 20px;
+            width: 90px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green-main), var(--green-light), transparent);
+            margin-top: 22px;
         }
 
-        @keyframes slideLeftOnly {
-            0%, 25%  { transform: translateX(0); }
-            30%, 55% { transform: translateX(-25%); }
-            60%, 85% { transform: translateX(-50%); }
-            90%, 100%{ transform: translateX(-75%); }
+        .hero-subheading {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--green-mid);
+            margin-top: 16px;
+            margin-bottom: 22px;
+            letter-spacing: 0.2px;
+        }
+
+        .hero-desc {
+            font-size: 0.96rem;
+            color: var(--text-body);
+            line-height: 1.85;
+            max-width: 560px;
+            border-left: 3px solid var(--green-light);
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.6);
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .hero-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.66rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--green-deep);
+            background: var(--white);
+            border: 1px solid var(--border-mid);
+            padding: 6px 14px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .hero-tag:hover {
+            background: var(--green-pale);
+            border-color: var(--green-main);
+        }
+
+        .hero-illustration {
+            flex-shrink: 0;
+            width: 340px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-illustration svg {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 8px 30px rgba(26,77,30,0.18));
+        }
+
+        .hero-bottom-line {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--green-main), var(--green-light), var(--green-main), transparent);
+            z-index: 3;
+        }
+
+        @media (max-width: 900px) {
+            .hero-inner {
+                flex-direction: column;
+                justify-content: center;
+                padding: 100px 24px 60px;
+                gap: 40px;
+                text-align: left;
+            }
+            .hero-heading { font-size: 3.2rem; }
+            .hero-illustration { width: 240px; }
+            .hero-tags { gap: 8px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-heading { font-size: 2.2rem; }
+            .hero-illustration { width: 180px; }
         }
 
         /* === WHO WE ARE === */
+        .brand-affiliation-showcase {
+            background-color: var(--green-faint);
+            padding: 40px 35px;
+            margin-bottom: 55px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            box-shadow: var(--shadow-sm);
+            border-left: 5px solid var(--green-main);
+        }
+        .brand-showcase-logo {
+            flex-shrink: 0;
+            width: 115px;
+            height: auto;
+            mix-blend-mode: multiply;
+            transition: var(--transition);
+        }
+        .brand-affiliation-showcase:hover .brand-showcase-logo {
+            transform: scale(1.05);
+        }
+        .brand-showcase-text {
+            flex: 1;
+        }
+        .brand-showcase-text h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--green-deep);
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        .brand-showcase-text p {
+            font-size: 0.98rem;
+            color: var(--text-body);
+            line-height: 1.8;
+        }
+
         .leader-row {
             display: flex;
             align-items: flex-start;
@@ -349,7 +513,6 @@
             box-shadow: var(--shadow-sm);
         }
 
-        /* Corner accents on leader photo placeholder */
         .leader-img::before,
         .leader-img::after {
             content: '';
@@ -429,7 +592,6 @@
             gap: 40px;
         }
 
-        /* Primary member — bold highlighted card with photo */
         .team-member-primary {
             display: flex;
             align-items: flex-start;
@@ -573,7 +735,6 @@
             background: var(--border);
         }
 
-        /* Secondary member — no photo, slightly quieter */
         .team-member-secondary {
             display: flex;
             align-items: flex-start;
@@ -586,7 +747,6 @@
             position: relative;
         }
 
-        /* Physiotherapist member */
         .team-member-physio {
             display: flex;
             align-items: flex-start;
@@ -615,7 +775,6 @@
             margin-top: 4px;
         }
 
-        /* Shared service list for orthotic / physio items */
         .services-detail-list {
             list-style: none;
             margin-bottom: 6px;
@@ -633,13 +792,6 @@
             background: var(--green-pale);
             border-left-color: var(--green-deep);
             padding-left: 16px;
-        }
-
-        @media (max-width: 768px) {
-            .team-member-primary,
-            .team-member-secondary,
-            .team-member-physio { flex-direction: column; padding: 22px; }
-            .team-photo-frame { width: 100%; max-width: 200px; min-height: 240px; }
         }
 
         /* === PHILOSOPHY / VISION / MISSION === */
@@ -1029,7 +1181,6 @@
         .service-column:last-child { border-right: none; }
         .service-column:hover { background: var(--green-faint); }
 
-        /* Top accent bar per column */
         .service-column::before {
             content: '';
             position: absolute;
@@ -1086,7 +1237,6 @@
             overflow: hidden;
         }
 
-        /* Corner decorations */
         .donation-box::before {
             content: '';
             position: absolute;
@@ -1202,6 +1352,7 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
         }
+        
         .footer-logo-img {
             height: 50px;
             width: auto;
@@ -1210,42 +1361,19 @@
             filter: drop-shadow(0 1px 4px rgba(26,77,30,0.1));
         }
 
-        /* === SCROLL REVEAL ANIMATION === */
-        @keyframes fadeSlideUp {
-            from { opacity: 0; transform: translateY(22px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        .project-card, .objective-item, .vm-card, .cert-card, .service-column {
-            animation: fadeSlideUp 0.6s ease both;
-        }
-
-        /* === MOBILE RESPONSIVE === */
         @media (max-width: 768px) {
-            .nav-container {
-                height: auto;
-                padding: 12px 0;
-                flex-direction: column;
-                gap: 12px;
-            }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 8px;
-            }
+            .nav-container { height: auto; padding: 12px 0; flex-direction: column; gap: 12px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 8px; }
             nav a { padding: 6px 12px; font-size: 0.72rem; }
-            .carousel-wrapper { height: 380px; }
-            .slide { padding-left: 30px; }
-            .carousel-content::before { display: none; }
-            .carousel-content h1 { font-size: 2rem; line-height: 1.2; }
-            .leader-row { flex-direction: column; text-align: left; }
-            .leader-img { width: 100%; max-width: 250px; margin: 0 auto; }
-            .philosophy-container,
-            .objectives-grid { grid-template-columns: 1fr; }
-            .footer-container {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
-            }
+            .hero-inner { flex-direction: column; padding: 100px 24px 60px; gap: 40px; text-align: left; }
+            .hero-heading { font-size: 3.2rem; }
+            .hero-illustration { width: 240px; }
+            .hero-tags { gap: 8px; }
+            .brand-affiliation-showcase { flex-direction: column; text-align: center; gap: 20px; padding: 25px 20px; }
+            .team-member-primary, .team-member-secondary, .team-member-physio { flex-direction: column; padding: 22px; }
+            .team-photo-frame { width: 100%; max-width: 200px; min-height: 240px; }
+            .philosophy-container, .objectives-grid { grid-template-columns: 1fr; }
+            .footer-container { flex-direction: column; gap: 12px; text-align: center; }
             .lightbox-content { max-width: 95%; }
             .certifications-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
             .services-grid { grid-template-columns: 1fr; }
@@ -1274,33 +1402,42 @@
         </div>
     </header>
 
-    <div class="carousel-wrapper">
-        <div class="carousel-track">
-            <div class="slide slide1">
-                <div class="carousel-content">
-                    <h1>Prosthetic & Orthotic Care Showcase</h1>
-                </div>
-            </div>
-            <div class="slide slide2">
-                <div class="carousel-content">
-                    <h1>Advanced Biomechanical Solutions</h1>
-                </div>
-            </div>
-            <div class="slide slide3">
-                <div class="carousel-content">
-                    <h1>Empowering Mobility, Restoring Life</h1>
-                </div>
-            </div>
-            <div class="slide slide1-dup">
-                <div class="carousel-content">
-                    <h1>Prosthetic & Orthotic Care Showcase</h1>
+    <!-- යාවත්කාලීන කරන ලදි: Hero Section හි ඇති සියලුම පෙළ සහ Tags අංග එකින් එක පිළිවෙලට ඇනිමේට් වේ -->
+    <div class="hero-section">
+        <img src="marco-bianchetti-fRon_XlZEbM-unsplash.jpg" alt="" class="hero-bg-img"
+             onerror="this.style.display='none';">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <span class="hero-label hero-anim-1">Surakshitha Hetak — Safe Future Foundation</span>
+                <h1 class="hero-heading hero-anim-2">A Secure &amp;<br>Hopeful Future</h1>
+                <p class="hero-subheading hero-anim-3">සුරක්ෂිත හෙටක් — Safe Future Foundation</p>
+                <p class="hero-desc hero-anim-4">
+                    Surakshitha Hetak — Safe Future Foundation provides artificial limbs, mobility aids, rehabilitation support, and social empowerment programs for persons with disabilities in Sri Lanka.
+                </p>
+                <div class="hero-tags">
+                    <span class="hero-tag">Prosthetic Care</span>
+                    <span class="hero-tag">Orthotic Solutions</span>
+                    <span class="hero-tag">Rehabilitation</span>
+                    <span class="hero-tag">Social Empowerment</span>
+                    <span class="hero-tag">Sri Lanka</span>
                 </div>
             </div>
         </div>
+        <div class="hero-bottom-line"></div>
     </div>
 
+    <!-- 1. WHO WE ARE -->
     <section id="who-we-are">
         <h2 class="section-title">Who We Are</h2>
+        
+        <div class="brand-affiliation-showcase">
+            <img src="Gemini_Generated_Image_1xvmzk1xvmzk1xvm.png" alt="SL Waldren Logo" class="brand-showcase-logo">
+            <div class="brand-showcase-text">
+                <h4>Under the Umbrella of SL Waldren</h4>
+                <p>The <strong>Safe Future Foundation</strong> proudly operates as the primary humanitarian arm directly under <strong>SL Waldren Prosthetic & Orthotic</strong>. Backed by world-class clinical expertise, advanced biomechanical precision, and decades of dedicated service, this partnership is bound together to provide unmatched restorative equity, customized mobility aids, and a completely transformation-driven clinical rehabilitation lifecycle across Sri Lanka.</p>
+            </div>
+        </div>
+
         <div class="team-members-wrapper">
 
             <!-- ===== PRIMARY: Mr. Sugath Laggoda ===== -->
@@ -1338,7 +1475,7 @@
                     <div class="specialty-label" style="margin-top: 22px;">Lower Limb Orthoses</div>
                     <ul class="services-detail-list">
                         <li>Pediatric / Adult Lower Limb Orthoses</li>
-                        <li>Mobility Supportive Orthosis — AFOs / KAFOs</li>
+                        <li>Deformity Supportive Orthosis — AFOs / KAFOs</li>
                         <li>Foot deformity corrective and accommodative orthosis (FOS, SMOS)</li>
                         <li>Night Splints</li>
                         <li>Preventive and Accommodative Braces</li>
@@ -1418,6 +1555,7 @@
         </div>
     </section>
 
+    <!-- 2. WHAT WE DO -->
     <section id="what-we-do" style="text-align: center;">
         <h2 class="section-title">What We Do</h2>
         
@@ -1466,6 +1604,7 @@
             </div>
         </div>
 
+        <!-- Sub Topic 1: Research & Recent Projects -->
         <h3 class="sub-section-title">Research & Recent Projects</h3>
         <div class="projects-grid">
             <div class="project-card">
@@ -1499,7 +1638,7 @@
                 </ul>
             </div>
             <div class="project-card">
-                <h3>Rehabilitation Support</h3>
+                <h3>Research Support</h3>
                 <p>Comprehensive rehabilitation programs to help persons with disabilities regain function and live independently.</p>
                 <ul>
                     <li>• Physical Rehabilitation</li>
@@ -1530,6 +1669,7 @@
             </div>
         </div>
 
+        <!-- Sub Topic 2: Our Objectives -->
         <h3 class="sub-section-title">Our Objectives</h3>
         <div class="objectives-grid">
             <div class="objective-item">
@@ -1565,6 +1705,7 @@
         <img id="lightboxImg" class="lightbox-content" alt="Enlarged view">
     </div>
 
+    <!-- 3. SERVICES -->
     <section id="services">
         <h2 class="section-title">Services</h2>
         <div class="services-grid">
@@ -1603,6 +1744,7 @@
         </div>
     </section>
 
+    <!-- 4. SUPPORT OUR WORK -->
     <section>
         <div class="donation-box">
             <h2>SUPPORT OUR WORK</h2>
@@ -1621,13 +1763,62 @@
     <footer>
         <div class="footer-container">
             <div class="footer-copyright">
-                &copy; 2026 Safe Future Foundation. All Rights Reserved.
+                &copy; 2026 SL Waldren Prosthetic & Orthotic. All Rights Reserved.
             </div>
-            <img src="5024742b-976b-4c4e-b248-4d6ab9c0c022.png" alt="SL Waldren Logo" class="footer-logo-img">
+            <img src="Gemini_Generated_Image_1xvmzk1xvmzk1xvm.png" alt="SL Waldren Logo" class="footer-logo-img">
         </div>
     </footer>
 
+    <!-- JavaScript Area -->
     <script>
+        // === SCROLL REVEAL LOGIC USING INTERSECTION OBSERVER ===
+        document.addEventListener("DOMContentLoaded", function() {
+            // Main Section Observer
+            const revealedSections = document.querySelectorAll("section");
+            const revealOptions = {
+                root: null,
+                threshold: 0.12,
+                rootMargin: "0px 0px -40px 0px"
+            };
+
+            const sectionObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("reveal-active");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, revealOptions);
+
+            revealedSections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+
+            // Grid Cards Cascade Observer
+            const gridCards = document.querySelectorAll(".brand-affiliation-showcase, .team-member-primary, .team-member-secondary, .team-member-physio, .project-card, .objective-item");
+            const cardOptions = {
+                root: null,
+                threshold: 0.08,
+                rootMargin: "0px 0px -20px 0px"
+            };
+
+            const cardObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add("item-reveal-active");
+                        }, (index % 3) * 150);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, cardOptions);
+
+            gridCards.forEach(card => {
+                cardObserver.observe(card);
+            });
+        });
+
+        // === ORIGINAL MARQUEE SLIDER & LIGHTBOX CODE ===
         const container = document.getElementById('marqueeContainer');
         const track = document.getElementById('marqueeTrack');
         const modal = document.getElementById('lightboxModal');
@@ -1663,7 +1854,6 @@
         });
         window.addEventListener('mouseup', () => isDragging = false);
 
-        // Touch support
         container.addEventListener('touchstart', (e) => { isDragging = true; dragMoved = false; startX = e.touches[0].pageX - currentX; });
         container.addEventListener('touchmove', (e) => {
             if (!isDragging) return; dragMoved = true;
@@ -1674,7 +1864,6 @@
         });
         container.addEventListener('touchend', () => isDragging = false);
 
-        // Interactive lightboxes
         document.querySelectorAll('.marquee-item, .cert-card').forEach(item => {
             item.addEventListener('click', () => {
                 if (dragMoved) return;
