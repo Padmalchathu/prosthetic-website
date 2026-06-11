@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate — Safe Future Foundation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-deep:  #1a4d1e;
+            --green-main:  #2e7d32;
+            --green-mid:   #388e3c;
+            --green-light: #4caf50;
+            --green-pale:  #e8f5e9;
+            --green-faint: #f1f8f2;
+            --green-mist:  #f7fbf7;
+            --white:       #ffffff;
+            --off-white:   #fafcfa;
+            --text-dark:   #1c2b1e;
+            --text-body:   #374a39;
+            --text-muted:  #5a7060;
+            --border:      rgba(46,125,50,0.22);
+            --border-mid:  rgba(46,125,50,0.42);
+            --shadow-sm:   0 2px 12px rgba(26,77,30,0.08);
+            --shadow-md:   0 6px 30px rgba(26,77,30,0.14);
+            --radius:      3px;
+            --transition:  all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+
+        body {
+            background: var(--off-white);
+            color: var(--text-body);
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content:'';
+            position:fixed; inset:0;
+            background-image:
+                linear-gradient(rgba(46,125,50,0.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46,125,50,0.022) 1px, transparent 1px);
+            background-size: 44px 44px;
+            pointer-events:none; z-index:0;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            border-bottom: 1px solid var(--border);
+            padding: 0 30px;
+            position: sticky; top:0;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            box-shadow: 0 1px 20px rgba(26,77,30,0.07);
+        }
+        header::before {
+            content:'';
+            position:absolute; top:0; left:0; right:0; height:3px;
+            background: linear-gradient(90deg, var(--green-deep), var(--green-light), var(--green-deep));
+        }
+        .nav-container {
+            max-width: 1200px; margin:0 auto;
+            display:flex; justify-content:space-between; align-items:center;
+            height:90px; gap:20px;
+        }
+        .logo-link {
+            display:flex; align-items:center; gap:10px;
+            text-decoration:none; flex-shrink:0;
+        }
+        .logo-img { height:70px; width:auto; object-fit:contain; mix-blend-mode:multiply; }
+        .nav-back {
+            font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:700;
+            letter-spacing:1.5px; text-transform:uppercase; text-decoration:none;
+            color:var(--green-main); border:1px solid var(--border-mid);
+            padding:7px 16px; border-radius:var(--radius);
+            transition:var(--transition);
+        }
+        .nav-back:hover { background:var(--green-pale); color:var(--green-deep); }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f2 50%, #dcedc8 100%);
+            padding: 70px 30px 60px;
+            text-align:center; position:relative; overflow:hidden;
+        }
+        .page-hero::after {
+            content:'';
+            position:absolute; bottom:0; left:0; right:0; height:3px;
+            background:linear-gradient(90deg, transparent, var(--green-main), transparent);
+        }
+        .page-hero-eyebrow {
+            font-family:'Montserrat',sans-serif; font-size:0.63rem; font-weight:700;
+            letter-spacing:3.5px; text-transform:uppercase; color:var(--green-main);
+            background:rgba(46,125,50,0.07); border:1px solid var(--border-mid);
+            padding:5px 14px; display:inline-block; margin-bottom:20px;
+        }
+        .page-hero h1 {
+            font-family:'Cormorant Garamond',serif; font-size:3.2rem; font-weight:700;
+            color:var(--green-deep); line-height:1.1; letter-spacing:0.5px;
+            margin-bottom:16px;
+        }
+        .page-hero p {
+            font-size:1rem; color:var(--text-body); max-width:600px;
+            margin:0 auto 30px; line-height:1.8;
+        }
+
+        /* Bank details card in hero */
+        .bank-card {
+            display:inline-flex; flex-direction:column; gap:6px;
+            background:var(--white); border:1px solid var(--border-mid);
+            border-left:4px solid var(--green-main);
+            padding:20px 30px; text-align:left;
+            box-shadow:var(--shadow-sm); margin-top:10px;
+        }
+        .bank-card-label {
+            font-family:'Montserrat',sans-serif; font-size:0.6rem; font-weight:700;
+            letter-spacing:2.5px; text-transform:uppercase; color:var(--green-main);
+            margin-bottom:4px;
+        }
+        .bank-card-row {
+            font-size:0.88rem; color:var(--text-dark);
+            display:flex; gap:12px; align-items:baseline;
+        }
+        .bank-card-row span { color:var(--text-muted); font-size:0.78rem; min-width:100px; }
+        .bank-card-row strong { color:var(--green-deep); font-weight:700; }
+
+        /* ===== MAIN LAYOUT ===== */
+        .main-wrap {
+            max-width:1200px; margin:0 auto; padding:60px 30px;
+            position:relative; z-index:1;
+        }
+
+        /* ===== SECTION HEADING ===== */
+        .section-heading {
+            font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:700;
+            color:var(--green-deep); letter-spacing:2px; text-transform:uppercase;
+            margin-bottom:35px; padding-bottom:16px; position:relative;
+        }
+        .section-heading::after {
+            content:''; position:absolute; bottom:0; left:0;
+            width:60px; height:2px;
+            background:linear-gradient(90deg, var(--green-main), transparent);
+        }
+
+        /* ===== POSTS GRID ===== */
+        .posts-grid {
+            display:grid;
+            grid-template-columns: 1fr;
+            gap:36px; margin-bottom:60px;
+        }
+
+        /* ---- Full Detail Card ---- */
+        .post-card {
+            background:var(--white); border:1px solid var(--border);
+            box-shadow:var(--shadow-sm);
+            display:grid;
+            grid-template-columns: 480px 1fr;
+            transition:var(--transition); position:relative; overflow:hidden;
+            cursor:default;
+            align-items:stretch;
+        }
+        .post-card::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:4px;
+            background:linear-gradient(90deg, var(--green-deep), var(--green-light), var(--green-deep));
+        }
+        .post-card:hover { box-shadow:var(--shadow-md); border-color:var(--border-mid); }
+
+        .post-img-wrap {
+            width:100%; min-height:420px; overflow:hidden;
+            background:var(--green-faint); position:relative; flex-shrink:0;
+            display:flex; align-items:stretch;
+        }
+        .post-img-wrap img {
+            width:100%; height:100%; object-fit:cover; object-position:top center;
+            display:block; position:absolute; inset:0;
+        }
+        .post-img-placeholder {
+            width:100%; height:100%; min-height:420px; display:flex; align-items:center; justify-content:center;
+            font-family:'Montserrat',sans-serif; font-size:0.7rem; color:var(--text-muted);
+            font-weight:600; letter-spacing:1px; text-transform:uppercase;
+        }
+
+        .post-body { padding:30px 32px; flex:1; display:flex; flex-direction:column; gap:12px; }
+
+        .post-amount-badge {
+            display:inline-block; font-family:'Montserrat',sans-serif;
+            font-size:0.68rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+            background:var(--green-pale); color:var(--green-deep);
+            border:1px solid var(--border-mid); padding:5px 14px; align-self:flex-start;
+        }
+
+        /* Contact row */
+        .post-contact-row {
+            display:flex; gap:20px; flex-wrap:wrap;
+            font-size:0.82rem; color:var(--text-muted); font-family:'Montserrat',sans-serif;
+            font-weight:600; letter-spacing:0.3px;
+            padding:10px 14px; background:var(--green-faint);
+            border:1px solid var(--border); margin-top:2px;
+        }
+        .post-contact-row span { display:flex; align-items:center; gap:5px; }
+
+        /* Story full */
+        .post-story-full {
+            font-size:0.875rem; color:var(--text-body); line-height:1.85;
+            white-space:pre-wrap; flex:1;
+        }
+
+        /* Bank info inside card */
+        .post-bank-info {
+            margin-top:8px; padding:14px 18px;
+            background:var(--green-faint); border-left:3px solid var(--green-main);
+            font-size:0.82rem; line-height:1.7; color:var(--text-body);
+        }
+        .post-bank-info strong { color:var(--green-deep); font-weight:700; }
+        .post-bank-info .bank-note {
+            font-size:0.74rem; color:var(--text-muted); margin-top:6px; display:block;
+        }
+
+        @media(max-width:900px){
+            .post-card { grid-template-columns:1fr; }
+            .post-img-wrap { min-height:240px; }
+        }
+
+        .post-need {
+            font-size:0.82rem; font-weight:600; color:var(--green-main);
+            padding:6px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+        }
+
+        .post-excerpt { display:none; } /* no longer used */
+
+        .post-name {
+            font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:700;
+            color:var(--green-deep); line-height:1.2;
+        }
+
+        .post-location {
+            font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:600;
+            color:var(--text-muted); letter-spacing:0.5px;
+        }
+
+
+
+        /* ===== DETAIL MODAL ===== */
+        .modal-overlay {
+            position:fixed; inset:0;
+            background:rgba(10,25,12,0.88); backdrop-filter:blur(5px);
+            z-index:9000; display:flex; align-items:center; justify-content:center;
+            opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+            padding:20px;
+        }
+        .modal-overlay.open { opacity:1; pointer-events:auto; }
+
+        .modal-box {
+            background:var(--white); max-width:720px; width:100%;
+            max-height:88vh; overflow-y:auto; position:relative;
+            border:1px solid var(--border-mid);
+            box-shadow:0 20px 60px rgba(0,0,0,0.5);
+            transform:translateY(20px); transition:transform 0.3s ease;
+        }
+        .modal-overlay.open .modal-box { transform:translateY(0); }
+
+        .modal-close {
+            position:absolute; top:14px; right:14px;
+            width:32px; height:32px; border-radius:50%;
+            border:1px solid var(--border-mid); background:var(--white);
+            cursor:pointer; font-size:1rem; color:var(--text-muted);
+            display:flex; align-items:center; justify-content:center;
+            transition:var(--transition); z-index:2; font-family:sans-serif;
+        }
+        .modal-close:hover { background:var(--green-pale); color:var(--green-deep); }
+
+        .modal-img { width:100%; max-height:340px; object-fit:cover; object-position:top center; display:block; }
+        .modal-content { padding:32px; }
+        .modal-content .post-amount-badge { margin-bottom:8px; }
+        .modal-content h2 {
+            font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:700;
+            color:var(--green-deep); margin-bottom:4px;
+        }
+        .modal-content .post-location { margin-bottom:16px; }
+        .modal-content .modal-story {
+            font-size:0.93rem; line-height:1.85; color:var(--text-body);
+            white-space:pre-wrap;
+        }
+        .modal-bank {
+            margin-top:24px; padding:20px; background:var(--green-faint);
+            border-left:3px solid var(--green-main);
+        }
+        .modal-bank p { font-size:0.85rem; margin-bottom:4px; }
+        .modal-bank strong { color:var(--green-deep); }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            text-align:center; padding:70px 20px;
+            border:1px dashed var(--border-mid); background:var(--green-mist);
+        }
+        .empty-state-icon { font-size:2.5rem; margin-bottom:14px; display:block; opacity:0.5; }
+        .empty-state p {
+            font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:600;
+            color:var(--text-muted); letter-spacing:1px; text-transform:uppercase;
+        }
+
+        /* ===== ADMIN PANEL ===== */
+        .admin-toggle-wrap { text-align:right; margin-bottom:20px; }
+        .admin-toggle-btn {
+            font-family:'Montserrat',sans-serif; font-size:0.66rem; font-weight:700;
+            letter-spacing:1.5px; text-transform:uppercase; cursor:pointer;
+            background:transparent; border:1px solid var(--border-mid);
+            color:var(--text-muted); padding:6px 14px; transition:var(--transition);
+        }
+        .admin-toggle-btn:hover { background:var(--green-faint); color:var(--green-deep); }
+
+        .admin-panel {
+            display:none; background:var(--white); border:1px solid var(--border-mid);
+            border-top:3px solid var(--green-main); padding:36px;
+            box-shadow:var(--shadow-md); margin-bottom:40px;
+        }
+        .admin-panel.open { display:block; }
+
+        .admin-panel h3 {
+            font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase; color:var(--green-main);
+            margin-bottom:24px; padding-bottom:10px; border-bottom:1px solid var(--border);
+        }
+
+        /* ===== LOGIN MODAL ===== */
+        .login-modal-overlay {
+            position:fixed; inset:0;
+            background:rgba(10,25,12,0.82); backdrop-filter:blur(6px);
+            z-index:9500; display:flex; align-items:center; justify-content:center;
+            opacity:0; pointer-events:none; transition:opacity 0.3s ease;
+            padding:20px;
+        }
+        .login-modal-overlay.open { opacity:1; pointer-events:auto; }
+
+        .login-modal-box {
+            background:var(--white); width:100%; max-width:420px;
+            border:1px solid var(--border-mid);
+            border-top:4px solid var(--green-main);
+            box-shadow:0 24px 60px rgba(0,0,0,0.45);
+            transform:translateY(18px); transition:transform 0.3s ease;
+            position:relative; overflow:hidden;
+        }
+        .login-modal-overlay.open .login-modal-box { transform:translateY(0); }
+
+        .login-modal-box::before {
+            content:'';
+            position:absolute; inset:0;
+            background-image:
+                linear-gradient(rgba(46,125,50,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46,125,50,0.03) 1px, transparent 1px);
+            background-size:30px 30px; pointer-events:none;
+        }
+
+        .login-modal-head {
+            padding:28px 32px 0;
+            position:relative; z-index:1;
+        }
+        .login-modal-eyebrow {
+            font-family:'Montserrat',sans-serif; font-size:0.58rem; font-weight:700;
+            letter-spacing:3px; text-transform:uppercase; color:var(--green-main);
+            margin-bottom:8px; display:block;
+        }
+        .login-modal-head h2 {
+            font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:700;
+            color:var(--green-deep); line-height:1.15; margin-bottom:4px;
+        }
+        .login-modal-head p {
+            font-size:0.8rem; color:var(--text-muted); margin-bottom:0;
+        }
+
+        .login-modal-body {
+            padding:24px 32px 32px;
+            position:relative; z-index:1;
+            display:flex; flex-direction:column; gap:16px;
+        }
+
+        .auth-view-step { display: none; flex-direction: column; gap: 16px; }
+        .auth-view-step.active { display: flex; }
+
+        .login-field { display:flex; flex-direction:column; gap:6px; }
+        .login-field label {
+            font-family:'Montserrat',sans-serif; font-size:0.6rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase; color:var(--green-deep);
+        }
+        .login-field-wrap {
+            position:relative;
+        }
+        .login-field-wrap input {
+            width:100%; padding:11px 45px 11px 14px;
+            border:1px solid var(--border-mid);
+            font-family:'Open Sans',sans-serif; font-size:0.92rem; color:var(--text-dark);
+            background:var(--white); outline:none; transition:var(--transition);
+        }
+        .login-field-wrap input:focus {
+            border-color:var(--green-main);
+            box-shadow:0 0 0 3px rgba(46,125,50,0.1);
+        }
+        
+        .pw-toggle {
+            position:absolute; right:12px; top:50%; transform:translateY(-50%);
+            background:none; border:none; cursor:pointer; color:var(--text-muted);
+            font-size:1.25rem; padding:2px; transition:color 0.2s;
+            outline: none; user-select: none;
+        }
+        .pw-toggle:hover { color:var(--green-main); }
+
+        .login-error {
+            font-size:0.78rem; color:#c62828; font-weight:600;
+            background:rgba(198,40,40,0.06); border:1px solid rgba(198,40,40,0.2);
+            padding:8px 12px; display:none; align-items:center; gap:6px;
+        }
+        .login-error.show { display:flex; }
+
+        .login-btn-row { display:flex; gap:10px; margin-top:4px; }
+        .login-submit {
+            flex:1; font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:700;
+            letter-spacing:1.5px; text-transform:uppercase; cursor:pointer;
+            padding:12px 20px; background:var(--green-main); color:var(--white);
+            border:none; box-shadow:0 2px 10px rgba(46,125,50,0.3);
+            transition:var(--transition);
+        }
+        .login-submit:hover { background:var(--green-deep); transform:translateY(-1px); box-shadow:0 4px 16px rgba(26,77,30,0.35); }
+        .login-cancel {
+            font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:700;
+            letter-spacing:1.5px; text-transform:uppercase; cursor:pointer;
+            padding:12px 18px; background:transparent; color:var(--text-muted);
+            border:1px solid var(--border-mid); transition:var(--transition);
+        }
+        .login-cancel:hover { background:var(--green-faint); color:var(--green-deep); }
+
+        .change-cred-link-wrap {
+            text-align: center; margin-top: 5px;
+        }
+        .change-cred-link {
+            font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700;
+            color: var(--text-muted); text-decoration: none; letter-spacing: 0.5px;
+            transition: color 0.2s; cursor: pointer;
+        }
+        .change-cred-link:hover { color: var(--green-main); }
+
+        @media(max-width:600px){ .form-row { grid-template-columns:1fr; } }
+
+        .form-group { display:flex; flex-direction:column; gap:6px; }
+        .form-group label {
+            font-family:'Montserrat',sans-serif; font-size:0.62rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase; color:var(--green-deep);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding:10px 14px; border:1px solid var(--border-mid);
+            font-family:'Open Sans',sans-serif; font-size:0.9rem; color:var(--text-dark);
+            background:var(--white); outline:none; transition:var(--transition);
+            resize:vertical;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus { border-color:var(--green-main); box-shadow:0 0 0 2px rgba(46,125,50,0.1); }
+
+        .form-hint { font-size:0.75rem; color:var(--text-muted); margin-top:2px; }
+
+        /* Buttons */
+        .btn {
+            font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:700;
+            letter-spacing:1.5px; text-transform:uppercase; cursor:pointer;
+            padding:11px 24px; border:none; transition:var(--transition);
+            display:inline-flex; align-items:center; gap:6px;
+        }
+        .btn-primary {
+            background:var(--green-main); color:var(--white);
+            box-shadow:0 2px 10px rgba(46,125,50,0.3);
+        }
+        .btn-primary:hover { background:var(--green-deep); box-shadow:0 4px 16px rgba(26,77,30,0.35); transform:translateY(-1px); }
+        .btn-danger {
+            background:transparent; color:#c62828;
+            border:1px solid rgba(198,40,40,0.3); font-size:0.62rem;
+        }
+        .btn-danger:hover { background:rgba(198,40,40,0.06); border-color:#c62828; }
+        .btn-secondary {
+            background:transparent; color:var(--green-main);
+            border:1px solid var(--border-mid);
+        }
+        .btn-secondary:hover { background:var(--green-pale); }
+
+        .btn-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:4px; }
+
+        /* Admin delete button on card */
+        .post-admin-bar {
+            padding:10px 16px; border-top:1px solid var(--border);
+            display:none; gap:8px;
+        }
+        .post-admin-bar.visible { display:flex; }
+
+        /* Toast */
+        .toast {
+            position:fixed; bottom:30px; right:30px;
+            background:var(--green-deep); color:var(--white);
+            font-family:'Montserrat',sans-serif; font-size:0.7rem; font-weight:700;
+            letter-spacing:1px; text-transform:uppercase;
+            padding:12px 20px; box-shadow:var(--shadow-md);
+            z-index:9999; opacity:0; transform:translateY(10px);
+            transition:all 0.3s ease; pointer-events:none;
+        }
+        .toast.show { opacity:1; transform:translateY(0); }
+
+        /* ===== FOOTER STYLING FIXED ===== */
+        footer {
+            border-top:1px solid var(--border); padding:20px 30px;
+            background:var(--white); position:relative;
+        }
+        footer::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:2px;
+            background:linear-gradient(90deg, transparent, var(--green-main), transparent);
+        }
+        .footer-container {
+            max-width:1200px; margin:0 auto;
+            display:flex; justify-content:space-between; align-items:center; gap:16px;
+            flex-wrap:wrap;
+        }
+        .footer-left { display:flex; flex-direction:column; gap:4px; }
+        .footer-copy {
+            font-family:'Montserrat',sans-serif; font-size:0.68rem; font-weight:700;
+            color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase;
+        }
+        .footer-sub {
+            font-family:'Montserrat',sans-serif; font-size:0.65rem; font-weight:700;
+            color:var(--green-main); letter-spacing:1.2px; text-transform:uppercase;
+            border-left:2px solid var(--green-light); padding-left:8px;
+        }
+        
+        /* යාවත්කාලීන කරන ලදි: ලෝගෝවේ මෝස්තරය මුල් ප්‍රධාන පිටුවේ ඇති ආකාරයටම නිවැරදිව සකසන ලදී */
+        .footer-logo { 
+            height:50px; 
+            width:auto; 
+            object-fit:contain; 
+            mix-blend-mode:multiply; 
+            filter: drop-shadow(0 1px 4px rgba(26,77,30,0.1));
+        }
+
+        /* ===== PHOTO PICKER ===== */
+        .photo-picker { display:flex; flex-direction:column; gap:10px; }
+
+        .photo-tabs {
+            display:flex; gap:0; border:1px solid var(--border-mid);
+            overflow:hidden; width:fit-content;
+        }
+        .photo-tab {
+            font-family:'Montserrat',sans-serif; font-size:0.62rem; font-weight:700;
+            letter-spacing:1.5px; text-transform:uppercase;
+            padding:8px 18px; cursor:pointer; border:none; background:var(--green-faint);
+            color:var(--text-muted); transition:var(--transition); border-right:1px solid var(--border-mid);
+        }
+        .photo-tab:last-child { border-right:none; }
+        .photo-tab.active { background:var(--green-main); color:#fff; }
+
+        /* File drop zone */
+        .photo-drop-zone {
+            border:2px dashed var(--border-mid); background:var(--green-mist);
+            padding:28px 20px; text-align:center; cursor:pointer;
+            transition:var(--transition); position:relative;
+        }
+        .photo-drop-zone:hover,
+        .photo-drop-zone.drag-over {
+            border-color:var(--green-main); background:var(--green-pale);
+        }
+        .photo-drop-zone input[type=file] {
+            position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%;
+        }
+        .photo-drop-icon { font-size:1.8rem; display:block; margin-bottom:8px; }
+        .photo-drop-label {
+            font-family:'Montserrat',sans-serif; font-size:0.7rem; font-weight:700;
+            letter-spacing:1.5px; text-transform:uppercase; color:var(--green-deep);
+            display:block; margin-bottom:4px;
+        }
+        .photo-drop-hint { font-size:0.73rem; color:var(--text-muted); }
+
+        /* URL input row */
+        .photo-url-row { display:flex; gap:8px; align-items:stretch; }
+        .photo-url-row input {
+            flex:1; padding:10px 14px; border:1px solid var(--border-mid);
+            font-family:'Open Sans',sans-serif; font-size:0.88rem; color:var(--text-dark);
+            outline:none; transition:var(--transition);
+        }
+        .photo-url-row input:focus { border-color:var(--green-main); box-shadow:0 0 0 2px rgba(46,125,50,0.1); }
+        .photo-url-btn {
+            font-family:'Montserrat',sans-serif; font-size:0.62rem; font-weight:700;
+            letter-spacing:1px; text-transform:uppercase; cursor:pointer;
+            padding:0 16px; background:var(--green-main); color:#fff; border:none;
+            transition:var(--transition); white-space:nowrap;
+        }
+        .photo-url-btn:hover { background:var(--green-deep); }
+
+        /* Preview */
+        .photo-preview-wrap {
+            display:none; position:relative;
+            border:1px solid var(--border-mid); background:var(--green-faint); overflow:hidden;
+        }
+        .photo-preview-wrap.show { display:block; }
+        .photo-preview-img {
+            width:100%; max-height:220px; object-fit:cover; object-position:top center; display:block;
+        }
+        .photo-preview-bar {
+            display:flex; align-items:center; justify-content:space-between;
+            padding:8px 12px; background:rgba(26,77,30,0.06);
+            border-top:1px solid var(--border);
+        }
+        .photo-preview-name {
+            font-family:'Montserrat',sans-serif; font-size:0.62rem; font-weight:700;
+            color:var(--text-muted); letter-spacing:0.5px; overflow:hidden;
+            text-overflow:ellipsis; white-space:nowrap; max-width:260px;
+        }
+        .photo-remove-btn {
+            font-family:'Montserrat',sans-serif; font-size:0.6rem; font-weight:700;
+            letter-spacing:1px; text-transform:uppercase; cursor:pointer;
+            background:transparent; border:1px solid rgba(198,40,40,0.35);
+            color:#c62828; padding:4px 10px; transition:var(--transition); flex-shrink:0;
+        }
+        @media(max-width:768px){
+            .page-hero h1 { font-size:2.2rem; }
+            .nav-container { height:auto; padding:14px 0; }
+            .posts-grid { grid-template-columns:1fr; }
+            .bank-card { padding:16px 18px; }
+            .modal-content { padding:20px; }
+            .admin-panel { padding:22px; }
+            .footer-container { flex-direction:column; text-align:center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo-link">
+            <img src="Gemini_Generated_Image_1xvmzk1xvmzk1xvm.png" alt="SL Waldren Logo" class="logo-img"
+                 onerror="this.style.display='none'">
+        </a>
+        <a href="index.html" class="nav-back">← Back to Site</a>
+    </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<div class="page-hero">
+    <div class="page-hero-eyebrow">Safe Future Foundation — Surakshitha Hetak</div>
+    <h1>Support a Life,<br>Restore a Future</h1>
+    <p>Every donation directly funds prosthetics, mobility aids, and rehabilitation for persons with disabilities in Sri Lanka. Read their stories below and help make a difference.</p>
+
+    <div class="bank-card">
+        <div class="bank-card-label">Donate via Bank Transfer</div>
+        <div class="bank-card-row"><span>Account Name</span><strong>SAFE FUTURE FOUNDATION</strong></div>
+        <div class="bank-card-row"><span>Account No.</span><strong>241-2-001-3-0077957</strong></div>
+        <div class="bank-card-row"><span>Bank</span><strong>People's Bank — Pallepola (00241)</strong></div>
+        <div class="bank-card-row"><span>Address</span><strong>No 175/G, Galahitiyagama, Pallepola 21152</strong></div>
+    </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div class="main-wrap">
+
+    <!-- Admin toggle -->
+    <div class="admin-toggle-wrap">
+        <button class="admin-toggle-btn" id="adminToggle">⚙ Admin</button>
+    </div>
+
+    <!-- Admin Panel (shown after login) -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-form open" id="adminForm">
+            <h3 id="formTitle">Add New Beneficiary Post</h3>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="f_name" placeholder="e.g. ඒ.ජී.විජේ කුමාරකුංග">
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="f_location" placeholder="e.g. මිල්ලෑව, කන්දේවත්ත">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Phone / Contact</label>
+                    <input type="text" id="f_phone" placeholder="e.g. 0762951189">
+                </div>
+                <div class="form-group">
+                    <label>Amount Needed (Rs.)</label>
+                    <input type="text" id="f_amount" placeholder="e.g. 200,000">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Aid Type</label>
+                <input type="text" id="f_aid" placeholder="e.g. Artificial Limb / Electric Wheelchair / Orthotic Brace">
+            </div>
+
+            <div class="form-group">
+                <label>Story / Description *</label>
+                <textarea id="f_story" rows="7" placeholder="Write the beneficiary's story here..."></textarea>
+                <div class="form-hint">Write in Sinhala or English. This will be shown to donors.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Photo</label>
+
+                <!-- Tab switcher -->
+                <div class="photo-picker" id="photoPicker">
+                    <div class="photo-tabs">
+                        <button type="button" class="photo-tab active" onclick="switchPhotoTab('file')">📁 Upload File</button>
+                        <button type="button" class="photo-tab" onclick="switchPhotoTab('url')">🔗 Paste URL</button>
+                    </div>
+
+                    <!-- File upload tab -->
+                    <div id="photoTabFile">
+                        <div class="photo-drop-zone" id="photoDropZone">
+                            <input type="file" id="f_photo_file" accept="image/*" onchange="handleFileSelect(this)">
+                            <span class="photo-drop-icon">🖼️</span>
+                            <span class="photo-drop-label">Click to choose or drag & drop</span>
+                            <span class="photo-drop-hint">JPG, PNG, WEBP — max 5MB</span>
+                        </div>
+                    </div>
+
+                    <!-- URL tab -->
+                    <div id="photoTabUrl" style="display:none;">
+                        <div class="photo-url-row">
+                            <input type="text" id="f_photo_url" placeholder="https://example.com/photo.jpg  or  photos/image.jpg">
+                            <button type="button" class="photo-url-btn" onclick="applyPhotoUrl()">Preview</button>
+                        </div>
+                    </div>
+
+                    <!-- Preview (shared) -->
+                    <div class="photo-preview-wrap" id="photoPreviewWrap">
+                        <img src="" alt="Preview" class="photo-preview-img" id="photoPreviewImg">
+                        <div class="photo-preview-bar">
+                            <span class="photo-preview-name" id="photoPreviewName">—</span>
+                            <button type="button" class="photo-remove-btn" onclick="removePhoto()">✕ Remove Photo</button>
+                        </div>
+                    </div>
+
+                    <!-- Hidden value passed to savePost() -->
+                    <input type="hidden" id="f_photo">
+                </div>
+            </div>
+
+            <input type="hidden" id="f_editId">
+
+            <div class="btn-row">
+                <button class="btn btn-primary" onclick="savePost()">✓ Save Post</button>
+                <button class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
+                <button class="btn btn-danger" onclick="adminLogout()" style="margin-left:auto;">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Posts heading -->
+    <h2 class="section-heading">Beneficiaries Awaiting Support</h2>
+
+    <!-- Posts grid -->
+    <div class="posts-grid" id="postsGrid">
+        <!-- populated by JS -->
+    </div>
+
+</div>
+
+<!-- ===== LOGIN MODAL ===== -->
+<div class="login-modal-overlay" id="loginModal">
+    <div class="login-modal-box">
+        <div class="login-modal-head">
+            <span class="login-modal-eyebrow" id="authEyebrow">Safe Future Foundation — Admin Access</span>
+            <h2 id="authHeading">Admin Login</h2>
+            <p id="authSubheading">Enter your credentials to manage beneficiary posts.</p>
+        </div>
+        
+        <div class="login-modal-body">
+            <!-- View Step 1: Standard Login Form -->
+            <div class="auth-view-step active" id="loginStepView">
+                <div class="login-field">
+                    <label>Username</label>
+                    <div class="login-field-wrap">
+                        <input type="text" id="loginUser" placeholder="Enter username" autocomplete="username">
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label>Password</label>
+                    <div class="login-field-wrap">
+                        <input type="password" id="loginPass" placeholder="Enter password" autocomplete="current-password">
+                        <button class="pw-toggle" type="button" onclick="togglePwVis('loginPass', this)" title="Show/hide password">👁‍🗨</button>
+                    </div>
+                </div>
+                <div class="login-error" id="loginError">
+                    <span>⚠</span> Incorrect username or password.
+                </div>
+                <div class="login-btn-row">
+                    <button class="login-submit" onclick="doLogin()">Login</button>
+                    <button class="login-cancel" onclick="closeLoginModal()">Cancel</button>
+                </div>
+                <div class="change-cred-link-wrap">
+                    <a class="change-cred-link" onclick="switchAuthView('change')">⚙ Change Account Credentials?</a>
+                </div>
+            </div>
+
+            <!-- View Step 2: Change Username/Password Form Inside Login Modal -->
+            <div class="auth-view-step" id="changeStepView">
+                <div class="login-field">
+                    <label>Current Admin Password *</label>
+                    <div class="login-field-wrap">
+                        <input type="password" id="changeOldPass" placeholder="Verify old password">
+                        <button class="pw-toggle" type="button" onclick="togglePwVis('changeOldPass', this)" title="Show/hide password">👁‍🗨</button>
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label>New Username *</label>
+                    <div class="login-field-wrap">
+                        <input type="text" id="changeNewUser" placeholder="Enter new username">
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label>New Password *</label>
+                    <div class="login-field-wrap">
+                        <input type="password" id="changeNewPass" placeholder="Enter new password">
+                        <button class="pw-toggle" type="button" onclick="togglePwVis('changeNewPass', this)" title="Show/hide password">👁‍🗨</button>
+                    </div>
+                </div>
+                <div class="login-error" id="changeError">
+                    <span>⚠</span> Error messaging updated dynamically via script.
+                </div>
+                <div class="login-btn-row">
+                    <button class="login-submit" style="background: var(--green-deep);" onclick="doUpdateAccount()">Update Account</button>
+                    <button class="login-cancel" onclick="switchAuthView('login')">Back to Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DETAIL MODAL ===== -->
+<div class="modal-overlay" id="detailModal">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <img src="" alt="" class="modal-img" id="modalImg">
+        <div class="modal-content">
+            <div class="post-amount-badge" id="modalBadge"></div>
+            <h2 id="modalName"></h2>
+            <div class="post-location" id="modalLocation"></div>
+            <div class="modal-story" id="modalStory"></div>
+            <div class="modal-bank">
+                <p><strong>To donate for this person, transfer to:</strong></p>
+                <p>Account Name: <strong>SAFE FUTURE FOUNDATION</strong></p>
+                <p>Account No: <strong>241-2-001-3-0077957</strong></p>
+                <p>Bank: <strong>People's Bank — Pallepola (00241)</strong></p>
+                <p style="margin-top:8px; font-size:0.8rem; color:var(--text-muted);">Please include the beneficiary's name as the payment reference.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ===== FOOTER (FIXED) ===== -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-left">
+            <div class="footer-copy">© 2026 Safe Future Foundation. All Rights Reserved.</div>
+            <div class="footer-sub">Clinical Services by SL Waldren Prosthetic &amp; Orthotic</div>
+        </div>
+        <!-- ✅ යාවත්කාලීන කරන ලදි: Footer ලෝගෝ ප්‍රතිබිම්භ නාමය සහ නිවැරදි ප්‍රමාණයන් මුල් පිටුවට අනුව සකසන ලදී -->
+        <img src="Gemini_Generated_Image_1xvmzk1xvmzk1xvm.png" alt="SL Waldren Logo" class="footer-logo"
+             onerror="this.style.display='none'">
+    </div>
+</footer>
+
+<script>
+    // ===== AUTH KEYS & STATE MANAGEMENT =====
+    const STORAGE_KEY = 'sff_posts';
+    const AUTH_USER_KEY = 'sff_admin_username';
+    const AUTH_PASS_KEY = 'sff_admin_password';
+
+    if (!localStorage.getItem(AUTH_USER_KEY)) {
+        localStorage.setItem(AUTH_USER_KEY, 'chathuranga');
+    }
+    if (!localStorage.getItem(AUTH_PASS_KEY)) {
+        localStorage.setItem(AUTH_PASS_KEY, '2002');
+    }
+
+    let posts = [];
+    let isAdmin = false;
+    let currentEditId = null;
+
+    // ===== STORAGE =====
+    function loadPosts() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            posts = raw ? JSON.parse(raw) : [];
+        } catch(e) { posts = []; }
+        if (posts.length === 0) seedPosts();
+    }
+
+    function savePosts() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(posts)); } catch(e) {}
+    }
+
+    function seedPosts() {
+        posts = [
+            {
+                id: 'seed1',
+                name: 'ඒ.ජී.විජේ කුමාරකුංග',
+                location: 'කන්දේවත්ත, මිල්ලෑව',
+                phone: '0762951189',
+                amount: '200,000',
+                aid: 'Artificial Limb (Prosthetic Leg)',
+                story: 'පල්ලේපොල ප්‍රාදේශීය ලේකම් කොට්ඨාශයේ කන්දේවත්ත, මිල්ලෑව ලිපිනයේ පදිංචි ඒ.ජී.විජේ කුමාරකුංග අවුරුදු 54 වන මා පාදයක් නැතිව ආබාධ සහිත පුද්ගලයෙකුනි.\n\n2010 වර්ෂයේ දඹුල්ල ප්‍රදේශයේ ගොවිතැන් කටයුතුවලින් යෙදෙමින් සිටිය අතරතුර යම් පුද්ගලයෙකු විසින් සකුනට බදිනා ලද කුවක්කුවක් පත්තු වීම නිසා මගේ වම් පාදය දණහිසට ඉහළින් ඉවත් කිරීමට සිදුවිය.\n\nදැනට මා කෘතිම පාදයක් භාවිතා කරන අතර එය සම්පූර්ණ අකළුන්තකවට පත්ව ඇති නිසා මගේ දෛනික වැඩ කටයුතු සිදු කර ගැනීමේදී මහත් අපහසුතාවයකට පත්ව ඇති බැවින් නිසා අලුත් කෘතිම පාදයක් මට ගලාගෙන ආකාරයෙන් සාකල්‍ය කර ගත යුතු නිසා එය සදහා රුපියල් ලක්ෂ 2 ක් පමණ මුදලක් ව්‍යය කිරීමට සිදුවී ඇති.\n\nකිසිදු ආදායම් මාර්ගයක් නොමැතිව අසරණ ජීවිතයක් ගත කරන මා හට මෙය සාකල්‍ය කර ගැනීමට වක්‍රමාර්ගයක් නොමැති හෙයින් ඔබගේ කාරුණික අවධානය මා වෙත යොමු කර ප්‍රාථමික ආධාරයක් ලබා දෙන මෙන් කාරුණිකව ඉල්ලා සිටිමි.',
+                photo: '',
+                date: '2026-06-09'
+            },
+            {
+                id: 'seed2',
+                name: 'එන්.පී. වසන්ත samansiri',
+                location: 'නාගහෙපොල, අකුරම්බොද — අංක 294',
+                phone: '0741194699',
+                amount: '350,000',
+                aid: 'Electric Wheelchair (විදුලි රෝද පුටුව)',
+                story: 'මාජීවත්වන්නේ මගේ සහෝදරයාගේ උපකාරයෙනි ඇයාද ස්ථිර ආදායම් මාර්ගයක් නොමැත.\n\nමගේ දැනට ක්‍රියාකාරී නොවෙමින් ඉතා ශරීරාබාධිත ලෙස සිටින නිසා ඊනියා රෝද පුටු නිල්ව ඉල්ලා ශ්‍රී ශීලත් සේවා ජීවිතය ජය ගැනීමට පිළිවෙල ආババිත මා හට ඉලෙක්ට්‍රික් රෝද පුටු නිලව ඉල්ලා ශ්‍රී රු. 350,000 ක් පමණ ව්‍යය කිරීමට සිදුවෙයි.\n\n can කාරුණිකව ඔබගෙන් ඉතාම කාරුණිකව ඉල්ලා සිටිමි.',
+                photo: '',
+                date: '2026-06-09'
+            }
+        ];
+        savePosts();
+    }
+
+    // ===== RENDER =====
+    function renderPosts() {
+        const grid = document.getElementById('postsGrid');
+        if (posts.length === 0) {
+            grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+                <span class="empty-state-icon">📋</span>
+                <p>No beneficiary posts yet</p>
+            </div>`;
+            return;
+        }
+        grid.innerHTML = posts.map(p => `
+            <div class="post-card">
+                <div class="post-img-wrap">
+                    ${p.photo
+                        ? `<img src="${p.photo}" alt="${p.name}" onerror="this.style.display='none'">`
+                        : `<div class="post-img-placeholder">📷 No photo uploaded</div>`}
+                </div>
+                <div class="post-body">
+                    <div class="post-amount-badge">💰 Need: Rs. ${p.amount} /=</div>
+                    <div class="post-name">${p.name}</div>
+
+                    <div class="post-contact-row">
+                        ${p.location ? `<span>📍 ${p.location}</span>` : ''}
+                        ${p.phone ? `<span>📞 ${p.phone}</span>` : ''}
+                        ${p.date ? `<span>📅 ${p.date}</span>` : ''}
+                    </div>
+
+                    ${p.aid ? `<div class="post-need">🎯 ${p.aid}</div>` : ''}
+
+                    <div class="post-story-full">${p.story}</div>
+
+                    <div class="post-bank-info">
+                        <strong>මෙම පුද්ගලයා සදහා පරිත්‍යාග කිරීමට:</strong><br>
+                        Account Name: <strong>SAFE FUTURE FOUNDATION</strong><br>
+                        Account No: <strong>241-2-001-3-0077957</strong><br>
+                        Bank: <strong>People's Bank — Pallepola (00241)</strong>
+                        <span class="bank-note">⚠ Reference ලෙස ප්‍රතිලාභියාගේ නම සඳහන් කරන්න.</span>
+                    </div>
+
+                    ${isAdmin ? `
+                    <div class="post-admin-bar visible" style="padding:0; border:none; margin-top:8px;">
+                        <button class="btn btn-secondary" style="font-size:0.6rem;padding:6px 12px"
+                            onclick="editPost('${p.id}')">✎ Edit</button>
+                        <button class="btn btn-danger"
+                            onclick="deletePost('${p.id}')">✕ Delete</button>
+                    </div>` : ''}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // ===== MODAL =====
+    function openModal(id) {
+        const p = posts.find(x => x.id === id);
+        if (!p) return;
+        const m = document.getElementById('detailModal');
+        const img = document.getElementById('modalImg');
+
+        if (p.photo) {
+            img.src = p.photo; img.style.display = 'block';
+            img.onerror = () => { img.style.display = 'none'; };
+        } else {
+            img.style.display = 'none';
+        }
+
+        document.getElementById('modalBadge').textContent = `Need: Rs. ${p.amount} /=`;
+        document.getElementById('modalName').textContent = p.name;
+        document.getElementById('modalLocation').textContent = p.location
+            ? `📍 ${p.location}${p.phone ? '  |  📞 ' + p.phone : ''}` : '';
+        document.getElementById('modalStory').textContent = p.story;
+        m.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // ===== AUTH MANAGEMENT =====
+    document.getElementById('adminToggle').addEventListener('click', () => {
+        if (isAdmin) {
+            document.getElementById('adminPanel').classList.toggle('open');
+        } else {
+            openLoginModal();
+        }
+    });
+
+    function openLoginModal() {
+        switchAuthView('login');
+        document.getElementById('loginModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => document.getElementById('loginUser').focus(), 80);
+    }
+
+    function closeLoginModal() {
+        document.getElementById('loginModal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('loginModal').addEventListener('click', e => {
+        if (e.target === document.getElementById('loginModal')) closeLoginModal();
+    });
+
+    function switchAuthView(view) {
+        const loginView = document.getElementById('loginStepView');
+        const changeView = document.getElementById('changeStepView');
+        const heading = document.getElementById('authHeading');
+        const sub = document.getElementById('authSubheading');
+
+        document.getElementById('loginError').classList.remove('show');
+        document.getElementById('changeError').classList.remove('show');
+
+        document.querySelectorAll('.pw-toggle').forEach(btn => {
+            btn.innerHTML = '👁‍🗨';
+        });
+        ['loginPass', 'changeOldPass', 'changeNewPass'].forEach(id => {
+            document.getElementById(id).type = 'password';
+        });
+
+        if (view === 'change') {
+            loginView.classList.remove('active');
+            changeView.classList.add('active');
+            heading.textContent = 'Change Credentials';
+            sub.textContent = 'Verify current password to set a new username and password profile.';
+            document.getElementById('changeOldPass').value = '';
+            document.getElementById('changeNewUser').value = '';
+            document.getElementById('changeNewPass').value = '';
+            setTimeout(() => document.getElementById('changeOldPass').focus(), 50);
+        } else {
+            changeView.classList.remove('active');
+            loginView.classList.add('active');
+            heading.textContent = 'Admin Login';
+            sub.textContent = 'Enter your credentials to manage beneficiary posts.';
+            document.getElementById('loginUser').value = '';
+            document.getElementById('loginPass').value = '';
+            setTimeout(() => document.getElementById('loginUser').focus(), 50);
+        }
+    }
+
+    function togglePwVis(fieldId, btn) {
+        const inp = document.getElementById(fieldId);
+        if (inp.type === 'password') {
+            inp.type = 'text';
+            btn.innerHTML = '👁'; 
+        } else {
+            inp.type = 'password';
+            btn.innerHTML = '👁‍🗨'; 
+        }
+    }
+
+    function doLogin() {
+        const user = document.getElementById('loginUser').value.trim();
+        const pass = document.getElementById('loginPass').value;
+        const err  = document.getElementById('loginError');
+
+        const savedUser = localStorage.getItem(AUTH_USER_KEY);
+        const savedPass = localStorage.getItem(AUTH_PASS_KEY);
+
+        if (user === savedUser && pass === savedPass) {
+            isAdmin = true;
+            closeLoginModal();
+            document.getElementById('adminPanel').classList.add('open');
+            renderPosts();
+            showToast('✓ Admin mode active');
+            setTimeout(() => {
+                document.getElementById('adminPanel').scrollIntoView({ behavior:'smooth', block:'start' });
+            }, 200);
+        } else {
+            err.classList.add('show');
+            document.getElementById('loginPass').value = '';
+            document.getElementById('loginPass').focus();
+            shakeLoginBox();
+        }
+    }
+
+    function doUpdateAccount() {
+        const oldPass = document.getElementById('changeOldPass').value;
+        const newUser = document.getElementById('changeNewUser').value.trim();
+        const newPass = document.getElementById('changeNewPass').value;
+        const err = document.getElementById('changeError');
+
+        const savedPass = localStorage.getItem(AUTH_PASS_KEY);
+
+        if (oldPass !== savedPass) {
+            err.innerHTML = '<span>⚠</span> Incorrect current password framework verification.';
+            err.classList.add('show');
+            shakeLoginBox();
+            return;
+        }
+
+        if (!newUser || !newPass) {
+            err.innerHTML = '<span>⚠</span> New username and password cannot be empty values.';
+            err.classList.add('show');
+            shakeLoginBox();
+            return;
+        }
+
+        localStorage.setItem(AUTH_USER_KEY, newUser);
+        localStorage.setItem(AUTH_PASS_KEY, newPass);
+        
+        showToast('✓ Security credentials successfully updated');
+        switchAuthView('login');
+    }
+
+    function shakeLoginBox() {
+        const box = document.querySelector('.login-modal-box');
+        box.style.animation = 'none';
+        box.offsetHeight; 
+        box.style.animation = 'loginShake 0.4s ease';
+    }
+
+    function adminLogout() {
+        isAdmin = false;
+        document.getElementById('adminPanel').classList.remove('open');
+        renderPosts();
+        showToast('Logged out');
+    }
+
+    // ===== CRUD =====
+    function savePost() {
+        const name = document.getElementById('f_name').value.trim();
+        const story = document.getElementById('f_story').value.trim();
+        if (!name || !story) { showToast('Name and story are required'); return; }
+
+        const id = document.getElementById('f_editId').value || ('post_' + Date.now());
+        const post = {
+            id,
+            name,
+            location: document.getElementById('f_location').value.trim(),
+            phone:    document.getElementById('f_phone').value.trim(),
+            amount:   document.getElementById('f_amount').value.trim() || '—',
+            aid:      document.getElementById('f_aid').value.trim(),
+            story,
+            photo:    document.getElementById('f_photo').value.trim(),
+            date:     new Date().toISOString().slice(0,10)
+        };
+
+        const idx = posts.findIndex(p => p.id === id);
+        if (idx >= 0) posts[idx] = post;
+        else posts.unshift(post);
+
+        savePosts();
+        clearForm();
+        renderPosts();
+        showToast(idx >= 0 ? 'Post updated' : 'Post added');
+    }
+
+    function editPost(id) {
+        const p = posts.find(x => x.id === id);
+        if (!p) return;
+        document.getElementById('f_name').value     = p.name;
+        document.getElementById('f_location').value = p.location;
+        document.getElementById('f_phone').value    = p.phone;
+        document.getElementById('f_amount').value   = p.amount;
+        document.getElementById('f_aid').value      = p.aid;
+        document.getElementById('f_story').value    = p.story;
+        document.getElementById('f_editId').value   = p.id;
+
+        // Load photo into picker
+        if (p.photo) {
+            setPhotoPreview(p.photo, p.photo.startsWith('data:') ? 'Uploaded image' : p.photo);
+        } else {
+            removePhoto();
+        }
+
+        document.getElementById('formTitle').textContent = 'Edit Post';
+        document.getElementById('adminPanel').classList.add('open');
+        document.getElementById('adminPanel').scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+
+    function deletePost(id) {
+        if (!confirm('Delete this post?')) return;
+        posts = posts.filter(p => p.id !== id);
+        savePosts(); renderPosts();
+        showToast('Post deleted');
+    }
+
+    function cancelEdit() { clearForm(); }
+
+    function clearForm() {
+        ['f_name','f_location','f_phone','f_amount','f_aid','f_story','f_editId']
+            .forEach(id => { document.getElementById(id).value = ''; });
+        removePhoto();
+        document.getElementById('formTitle').textContent = 'Add New Beneficiary Post';
+    }
+
+    // ===== PHOTO PICKER =====
+    function switchPhotoTab(tab) {
+        const filTab = document.getElementById('photoTabFile');
+        const urlTab = document.getElementById('photoTabUrl');
+        document.querySelectorAll('.photo-tab').forEach((b,i) => {
+            b.classList.toggle('active', (tab === 'file' && i === 0) || (tab === 'url' && i === 1));
+        });
+        if (tab === 'file') {
+            filTab.style.display = ''; urlTab.style.display = 'none';
+        } else {
+            filTab.style.display = 'none'; urlTab.style.display = '';
+            setTimeout(() => document.getElementById('f_photo_url').focus(), 60);
+        }
+    }
+
+    function handleFileSelect(input) {
+        const file = input.files[0];
+        if (!file) return;
+        if (file.size > 5 * 1024 * 1024) { showToast('File too large — max 5MB'); input.value=''; return; }
+        const reader = new FileReader();
+        reader.onload = e => setPhotoPreview(e.target.result, file.name);
+        reader.readAsDataURL(file);
+    }
+
+    function applyPhotoUrl() {
+        const url = document.getElementById('f_photo_url').value.trim();
+        if (!url) return;
+        setPhotoPreview(url, url);
+    }
+
+    // Enter key on URL input
+    document.getElementById('f_photo_url').addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); applyPhotoUrl(); }
+    });
+
+    // Drag-and-drop support
+    const dropZone = document.getElementById('photoDropZone');
+    ['dragenter','dragover'].forEach(ev => {
+        dropZone.addEventListener(ev, e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    });
+    ['dragleave','drop'].forEach(ev => {
+        dropZone.addEventListener(ev, e => { e.preventDefault(); dropZone.classList.remove('drag-over'); });
+    });
+    dropZone.addEventListener('drop', e => {
+        const file = e.dataTransfer.files[0];
+        if (!file || !file.type.startsWith('image/')) { showToast('Please drop an image file'); return; }
+        if (file.size > 5 * 1024 * 1024) { showToast('File too large — max 5MB'); return; }
+        const reader = new FileReader();
+        reader.onload = ev => setPhotoPreview(ev.target.result, file.name);
+        reader.readAsDataURL(file);
+    });
+
+    function setPhotoPreview(src, label) {
+        document.getElementById('f_photo').value = src;
+        const img = document.getElementById('photoPreviewImg');
+        img.src = src;
+        img.onerror = () => { removePhoto(); };
+        document.getElementById('photoPreviewName').textContent = label;
+        document.getElementById('photoPreviewWrap').classList.add('show');
+    }
+
+    function removePhoto() {
+        document.getElementById('f_photo').value = '';
+        document.getElementById('f_photo_file').value = '';
+        document.getElementById('f_photo_url').value = '';
+        document.getElementById('photoPreviewImg').src = '';
+        document.getElementById('photoPreviewName').textContent = '—';
+        document.getElementById('photoPreviewWrap').classList.remove('show');
+    }
+
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg; t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2600);
+    }
+
+    function closeModal() {
+        document.getElementById('detailModal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    loadPosts();
+    renderPosts();
+</script>
+</body>
+</html>
